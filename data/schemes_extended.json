@@ -1,0 +1,2302 @@
+[
+  {
+    "id": "cgtmse",
+    "name": "CGTMSE Credit Guarantee for MSEs",
+    "body": "Credit Guarantee Fund Trust for Micro & Small Enterprises",
+    "benefit_summary": "Collateral-free guarantee cover on MSE loans (up to 85% for micro loans).",
+    "benefit_amount": 10000000,
+    "ease_score": 2,
+    "category_boost": [],
+    "criteria": [
+      {
+        "field": "age",
+        "operator": "between",
+        "value": [
+          18,
+          70
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Age 18+"
+      },
+      {
+        "field": "occupation_stage",
+        "operator": "in",
+        "value": [
+          "aspiring entrepreneur",
+          "existing business",
+          "artisan"
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Micro/small enterprise purpose"
+      }
+    ],
+    "documents": [
+      "Udyam registration",
+      "Project report",
+      "Bank loan application"
+    ],
+    "channel": "Automatic via member banks/NBFCs when you take an MSE loan — ask your bank for CGTMSE cover.",
+    "url": "https://www.cgtmse.in/",
+    "last_verified": "2026-10-10",
+    "source": "cgtmse.in + MyScheme.gov.in"
+  },
+  {
+    "id": "pm-svanidhi",
+    "name": "PM SVANidhi (Street Vendors)",
+    "body": "Ministry of Housing & Urban Affairs",
+    "benefit_summary": "Working-capital loans ₹10k–₹80k in tranches + 7% interest subsidy + cashback for street vendors.",
+    "benefit_amount": 80000,
+    "ease_score": 5,
+    "category_boost": [],
+    "criteria": [
+      {
+        "field": "occupation_stage",
+        "operator": "equals",
+        "value": "street vendor",
+        "required": true,
+        "actionable": false,
+        "label": "Street vendor"
+      },
+      {
+        "field": "age",
+        "operator": "between",
+        "value": [
+          18,
+          70
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Age 18+"
+      }
+    ],
+    "documents": [
+      "Aadhaar",
+      "Vendor certificate / ULB identification",
+      "Bank account"
+    ],
+    "channel": "Apply at pmsvanidhi.mohua.gov.in or via CSC / ULB helpdesk.",
+    "url": "https://pmsvanidhi.mohua.gov.in/",
+    "last_verified": "2026-10-10",
+    "source": "pmsvanidhi.mohua.gov.in + MyScheme.gov.in"
+  },
+  {
+    "id": "pmfme",
+    "name": "PM Formalisation of Micro Food Processing (PMFME)",
+    "body": "Ministry of Food Processing Industries",
+    "benefit_summary": "35% credit-linked subsidy for micro food-processing units (ODOP focus).",
+    "benefit_amount": 1000000,
+    "ease_score": 3,
+    "category_boost": [],
+    "criteria": [
+      {
+        "field": "age",
+        "operator": "between",
+        "value": [
+          18,
+          70
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Age 18+"
+      },
+      {
+        "field": "occupation_stage",
+        "operator": "in",
+        "value": [
+          "aspiring entrepreneur",
+          "existing business",
+          "artisan",
+          "farmer"
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Food-processing micro unit"
+      },
+      {
+        "field": "sector",
+        "operator": "in",
+        "value": [
+          "manufacturing",
+          "agriculture",
+          "trading"
+        ],
+        "required": true,
+        "actionable": true,
+        "fix_hint": "PMFME covers food-processing units (making, packing, farm-gate processing).",
+        "label": "Food-related activity"
+      }
+    ],
+    "documents": [
+      "Aadhaar",
+      "Project report",
+      "Quotation for machinery",
+      "Bank account"
+    ],
+    "channel": "Apply on pmfme.mofpi.gov.in via district resource person.",
+    "url": "https://pmfme.mofpi.gov.in/",
+    "last_verified": "2026-10-10",
+    "source": "pmfme.mofpi.gov.in + MyScheme.gov.in"
+  },
+  {
+    "id": "nrlm-shg",
+    "name": "DAY-NRLM Aajeevika (Women SHG Loans)",
+    "body": "Ministry of Rural Development",
+    "benefit_summary": "SHG loans with interest subvention (effective ~7%) for rural women collectives.",
+    "benefit_amount": 2000000,
+    "ease_score": 3,
+    "category_boost": [
+      "female",
+      "women"
+    ],
+    "criteria": [
+      {
+        "field": "gender",
+        "operator": "equals",
+        "value": "Female",
+        "required": true,
+        "actionable": false,
+        "label": "Woman member"
+      },
+      {
+        "field": "age",
+        "operator": "between",
+        "value": [
+          18,
+          70
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Age 18+"
+      },
+      {
+        "field": "income_band",
+        "operator": "in",
+        "value": [
+          "under 1 lakh",
+          "1 to 2.5 lakh"
+        ],
+        "required": true,
+        "actionable": false,
+        "fix_hint": "NRLM targets poor rural households — check SECC/BPL coverage with your VO.",
+        "label": "Low-income household"
+      }
+    ],
+    "documents": [
+      "Aadhaar",
+      "SHG membership via Village Organisation",
+      "Bank account"
+    ],
+    "channel": "Join an SHG via your block mission unit; loans through banks.",
+    "url": "https://aajeevika.gov.in/",
+    "last_verified": "2026-10-10",
+    "source": "aajeevika.gov.in + MyScheme.gov.in"
+  },
+  {
+    "id": "kcc",
+    "name": "Kisan Credit Card (KCC)",
+    "body": "Banks via Dept. of Agriculture & Farmers Welfare",
+    "benefit_summary": "Crop loans up to ₹3L at ~4% effective interest with prompt-repayment incentive.",
+    "benefit_amount": 300000,
+    "ease_score": 4,
+    "category_boost": [],
+    "criteria": [
+      {
+        "field": "occupation_stage",
+        "operator": "equals",
+        "value": "farmer",
+        "required": true,
+        "actionable": false,
+        "label": "Farmer"
+      },
+      {
+        "field": "age",
+        "operator": "between",
+        "value": [
+          18,
+          75
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Age 18–75"
+      }
+    ],
+    "documents": [
+      "Aadhaar",
+      "Land records",
+      "Cropping pattern declaration",
+      "Bank account"
+    ],
+    "channel": "Apply at any bank branch or via JanSamarth portal.",
+    "url": "https://www.jansamarth.in/",
+    "last_verified": "2026-10-10",
+    "source": "jansamarth.in + MyScheme.gov.in"
+  },
+  {
+    "id": "pmfby",
+    "name": "PM Fasal Bima Yojana (Crop Insurance)",
+    "body": "Ministry of Agriculture & Farmers Welfare",
+    "benefit_summary": "Crop insurance at 2% (kharif) / 1.5% (rabi) / 5% (horti) farmer premium share.",
+    "benefit_amount": 200000,
+    "ease_score": 3,
+    "category_boost": [],
+    "criteria": [
+      {
+        "field": "occupation_stage",
+        "operator": "equals",
+        "value": "farmer",
+        "required": true,
+        "actionable": false,
+        "label": "Farmer (owner or sharecropper)"
+      }
+    ],
+    "documents": [
+      "Aadhaar",
+      "Land / tenancy proof",
+      "Sowing certificate",
+      "Bank account"
+    ],
+    "channel": "Enrol via bank (loanee) or pmfby.gov.in / CSC (non-loanee) before season cut-off.",
+    "url": "https://pmfby.gov.in/",
+    "last_verified": "2026-10-10",
+    "source": "pmfby.gov.in + MyScheme.gov.in"
+  },
+  {
+    "id": "pmsby",
+    "name": "PM Suraksha Bima Yojana (Accident Cover)",
+    "body": "Department of Financial Services (via banks)",
+    "benefit_summary": "₹2 lakh accident death/disability cover at ₹20/year, ages 18–70.",
+    "benefit_amount": 200000,
+    "ease_score": 5,
+    "category_boost": [],
+    "criteria": [
+      {
+        "field": "age",
+        "operator": "between",
+        "value": [
+          18,
+          70
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Age 18–70"
+      }
+    ],
+    "documents": [
+      "Bank account + consent form",
+      "Aadhaar for KYC"
+    ],
+    "channel": "One-page form at your bank branch or net-banking.",
+    "url": "https://jansuraksha.gov.in/",
+    "last_verified": "2026-10-10",
+    "source": "jansuraksha.gov.in + MyScheme.gov.in"
+  },
+  {
+    "id": "pmsym",
+    "name": "PM Shram Yogi Maandhan (Unorganised Workers Pension)",
+    "body": "Ministry of Labour & Employment",
+    "benefit_summary": "₹3,000/month pension from age 60 for unorganised workers joining at 18–40.",
+    "benefit_amount": 36000,
+    "ease_score": 3,
+    "category_boost": [],
+    "criteria": [
+      {
+        "field": "age",
+        "operator": "between",
+        "value": [
+          18,
+          40
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Joining age 18–40"
+      },
+      {
+        "field": "income_band",
+        "operator": "in",
+        "value": [
+          "under 1 lakh",
+          "1 to 2.5 lakh"
+        ],
+        "required": true,
+        "actionable": false,
+        "fix_hint": "Monthly income must be ≤₹15,000 — check official rules.",
+        "label": "Unorganised-worker income range"
+      }
+    ],
+    "documents": [
+      "Aadhaar",
+      "Bank account",
+      "Mobile number"
+    ],
+    "channel": "Enrol at CSCs or via maandhan.in with auto-debit contribution.",
+    "url": "https://maandhan.in/",
+    "last_verified": "2026-10-10",
+    "source": "maandhan.in + MyScheme.gov.in"
+  },
+  {
+    "id": "central-sector-scholarship",
+    "name": "Central Sector Scholarship (College/University)",
+    "body": "Department of Higher Education via NSP",
+    "benefit_summary": "₹12,000–₹20,000/year for top-20th-percentile students, family income <₹4.5L.",
+    "benefit_amount": 20000,
+    "ease_score": 3,
+    "category_boost": [],
+    "criteria": [
+      {
+        "field": "occupation_stage",
+        "operator": "equals",
+        "value": "student",
+        "required": true,
+        "actionable": false,
+        "label": "Active student"
+      },
+      {
+        "field": "education_level",
+        "operator": "in",
+        "value": [
+          "undergraduate",
+          "postgraduate"
+        ],
+        "required": true,
+        "actionable": true,
+        "fix_hint": "This scholarship is for regular UG/PG courses — school and diploma students should see NSP post-matric instead.",
+        "label": "UG/PG course"
+      },
+      {
+        "field": "income_band",
+        "operator": "in",
+        "value": [
+          "under 1 lakh",
+          "1 to 2.5 lakh",
+          "2.5 to 6 lakh"
+        ],
+        "required": true,
+        "actionable": false,
+        "fix_hint": "Family income cap ~₹4.5L — not changeable.",
+        "label": "Income within cap"
+      }
+    ],
+    "documents": [
+      "Class 12 marksheet (top-20th-percentile proof)",
+      "Income certificate",
+      "Aadhaar",
+      "Bank account"
+    ],
+    "channel": "Apply on scholarships.gov.in during the annual window.",
+    "application_window": {
+      "opens": "07-01",
+      "closes": "10-31",
+      "note": "Typical annual window - confirm exact dates on the official portal."
+    },
+    "url": "https://scholarships.gov.in/",
+    "last_verified": "2026-10-10",
+    "source": "scholarships.gov.in + MyScheme.gov.in"
+  },
+  {
+    "id": "aicte-pragati",
+    "name": "AICTE Pragati Scholarship (Girls in Technical Courses)",
+    "body": "AICTE",
+    "benefit_summary": "₹50,000/year for girl students in AICTE-approved diploma/UG technical courses (income <₹8L).",
+    "benefit_amount": 50000,
+    "ease_score": 3,
+    "category_boost": [
+      "female",
+      "women"
+    ],
+    "criteria": [
+      {
+        "field": "gender",
+        "operator": "equals",
+        "value": "Female",
+        "required": true,
+        "actionable": false,
+        "label": "Girl student"
+      },
+      {
+        "field": "occupation_stage",
+        "operator": "equals",
+        "value": "student",
+        "required": true,
+        "actionable": false,
+        "label": "Active student"
+      },
+      {
+        "field": "education_level",
+        "operator": "in",
+        "value": [
+          "undergraduate",
+          "diploma"
+        ],
+        "required": true,
+        "actionable": true,
+        "fix_hint": "Pragati is for technical diploma/degree courses — other levels fit NSP schemes.",
+        "label": "Technical diploma/degree"
+      },
+      {
+        "field": "income_band",
+        "operator": "in",
+        "value": [
+          "under 1 lakh",
+          "1 to 2.5 lakh",
+          "2.5 to 6 lakh",
+          "6 to 12 lakh"
+        ],
+        "required": true,
+        "actionable": false,
+        "fix_hint": "Family income cap ₹8L — not changeable.",
+        "label": "Income within cap"
+      }
+    ],
+    "documents": [
+      "Admission proof (AICTE institute)",
+      "Income certificate",
+      "Aadhaar",
+      "Bank account"
+    ],
+    "channel": "Apply via your institute on the AICTE/NSP portal.",
+    "application_window": {
+      "opens": "07-01",
+      "closes": "10-31",
+      "note": "Typical annual window - confirm exact dates on the official portal."
+    },
+    "url": "https://www.aicte-india.org/",
+    "last_verified": "2026-10-10",
+    "source": "aicte-india.org + MyScheme.gov.in"
+  },
+  {
+    "id": "pm-yasasvi",
+    "name": "PM-YASASVI (OBC/EBC/DNT Post-Matric)",
+    "body": "Dept. of Social Justice & Empowerment",
+    "benefit_summary": "Post-matric scholarship for OBC/EBC/DNT students with income <₹2.5L.",
+    "benefit_amount": 20000,
+    "ease_score": 3,
+    "category_boost": [
+      "obc"
+    ],
+    "criteria": [
+      {
+        "field": "occupation_stage",
+        "operator": "equals",
+        "value": "student",
+        "required": true,
+        "actionable": false,
+        "label": "Active student"
+      },
+      {
+        "field": "social_category",
+        "operator": "in",
+        "value": [
+          "OBC"
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "OBC/EBC/DNT group"
+      },
+      {
+        "field": "income_band",
+        "operator": "in",
+        "value": [
+          "under 1 lakh",
+          "1 to 2.5 lakh"
+        ],
+        "required": true,
+        "actionable": false,
+        "fix_hint": "Income cap ₹2.5L — not changeable.",
+        "label": "Income within cap"
+      }
+    ],
+    "documents": [
+      "Caste certificate",
+      "Income certificate",
+      "Marksheet",
+      "Aadhaar",
+      "Bank account"
+    ],
+    "channel": "Apply on the YASASVI/NSP portal during the window.",
+    "application_window": {
+      "opens": "09-01",
+      "closes": "12-15",
+      "note": "Typical annual window - confirm exact dates on the official portal."
+    },
+    "url": "https://socialjustice.gov.in/",
+    "last_verified": "2026-10-10",
+    "source": "socialjustice.gov.in + MyScheme.gov.in"
+  },
+  {
+    "id": "free-coaching-sc-obc",
+    "name": "Free Coaching Scheme (SC/OBC Students)",
+    "body": "Dept. of Social Justice & Empowerment",
+    "benefit_summary": "Free competitive-exam coaching + stipend (SC income<₹8L, OBC<₹6L).",
+    "benefit_amount": 30000,
+    "ease_score": 3,
+    "category_boost": [
+      "sc",
+      "obc"
+    ],
+    "criteria": [
+      {
+        "field": "occupation_stage",
+        "operator": "equals",
+        "value": "student",
+        "required": true,
+        "actionable": false,
+        "label": "Student"
+      },
+      {
+        "field": "social_category",
+        "operator": "in",
+        "value": [
+          "SC",
+          "OBC"
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "SC/OBC group"
+      },
+      {
+        "field": "income_band",
+        "operator": "in",
+        "value": [
+          "under 1 lakh",
+          "1 to 2.5 lakh",
+          "2.5 to 6 lakh",
+          "6 to 12 lakh"
+        ],
+        "required": true,
+        "actionable": false,
+        "fix_hint": "Income caps (SC ₹8L / OBC ₹6L) — not changeable.",
+        "label": "Income within cap"
+      }
+    ],
+    "documents": [
+      "Caste + income certificates",
+      "Qualification proof",
+      "Aadhaar"
+    ],
+    "channel": "Apply to empanelled coaching institutes via socialjustice.gov.in.",
+    "application_window": {
+      "opens": "06-01",
+      "closes": "08-31",
+      "note": "Typical annual window - confirm exact dates on the official portal."
+    },
+    "url": "https://socialjustice.gov.in/",
+    "last_verified": "2026-10-10",
+    "source": "socialjustice.gov.in + MyScheme.gov.in"
+  },
+  {
+    "id": "pmvvy",
+    "name": "PM Vaya Vandana Yojana (Senior Pension-cum-Insurance)",
+    "body": "LIC of India",
+    "benefit_summary": "Assured pension (~7.4%) for 10 years for seniors 60+.",
+    "benefit_amount": 120000,
+    "ease_score": 3,
+    "category_boost": [],
+    "criteria": [
+      {
+        "field": "age",
+        "operator": "gte",
+        "value": 60,
+        "required": true,
+        "actionable": false,
+        "label": "Age 60+"
+      }
+    ],
+    "documents": [
+      "Age proof",
+      "Aadhaar",
+      "Bank account / NEFT details"
+    ],
+    "channel": "Buy online at licindia.in or any LIC branch.",
+    "url": "https://licindia.in/",
+    "last_verified": "2026-10-10",
+    "source": "licindia.in + MyScheme.gov.in"
+  },
+  {
+    "id": "vayoshri",
+    "name": "Rashtriya Vayoshri Yojana (Aids for BPL Seniors)",
+    "body": "Dept. of Social Justice via ALIMCO",
+    "benefit_summary": "Free assisted-living devices (hearing aids, wheelchairs, spectacles) for BPL seniors 60+.",
+    "benefit_amount": 10000,
+    "ease_score": 4,
+    "category_boost": [],
+    "criteria": [
+      {
+        "field": "age",
+        "operator": "gte",
+        "value": 60,
+        "required": true,
+        "actionable": false,
+        "label": "Age 60+"
+      },
+      {
+        "field": "income_band",
+        "operator": "in",
+        "value": [
+          "under 1 lakh",
+          "1 to 2.5 lakh"
+        ],
+        "required": true,
+        "actionable": false,
+        "fix_hint": "BPL / low-income criterion — check state list.",
+        "label": "Low-income household"
+      }
+    ],
+    "documents": [
+      "Age proof",
+      "BPL / income certificate",
+      "Disability/medical assessment at camp"
+    ],
+    "channel": "Distributed via assessment camps — register with district social welfare office.",
+    "url": "https://alimco.in/",
+    "last_verified": "2026-10-10",
+    "source": "alimco.in + MyScheme.gov.in"
+  },
+  {
+    "id": "scss",
+    "name": "Senior Citizens Savings Scheme (SCSS)",
+    "body": "Post Offices & Banks",
+    "benefit_summary": "~8.2% quarterly-interest deposits (up to ₹30L) for 60+.",
+    "benefit_amount": 500000,
+    "ease_score": 5,
+    "category_boost": [],
+    "criteria": [
+      {
+        "field": "age",
+        "operator": "gte",
+        "value": 60,
+        "required": true,
+        "actionable": false,
+        "label": "Age 60+"
+      }
+    ],
+    "documents": [
+      "Age proof",
+      "KYC",
+      "Retirement proof if applying at 55+"
+    ],
+    "channel": "Open at any post office or bank branch.",
+    "url": "https://www.indiapost.gov.in/",
+    "last_verified": "2026-10-10",
+    "source": "indiapost.gov.in + MyScheme.gov.in"
+  },
+  {
+    "id": "cent-kalyani",
+    "name": "Cent Kalyani (Women Entrepreneurs Bank Loan)",
+    "body": "Central Bank of India",
+    "benefit_summary": "Business loans for women entrepreneurs (new and existing units).",
+    "benefit_amount": 10000000,
+    "ease_score": 3,
+    "category_boost": [
+      "female",
+      "women"
+    ],
+    "criteria": [
+      {
+        "field": "gender",
+        "operator": "equals",
+        "value": "Female",
+        "required": true,
+        "actionable": false,
+        "label": "Woman entrepreneur"
+      },
+      {
+        "field": "age",
+        "operator": "between",
+        "value": [
+          18,
+          70
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Age 18+"
+      },
+      {
+        "field": "occupation_stage",
+        "operator": "in",
+        "value": [
+          "aspiring entrepreneur",
+          "existing business",
+          "artisan"
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Business purpose"
+      }
+    ],
+    "documents": [
+      "KYC",
+      "Project report",
+      "Udyam registration (for existing units)"
+    ],
+    "channel": "Apply at any Central Bank of India branch.",
+    "url": "https://www.centralbankofindia.co.in/",
+    "last_verified": "2026-10-10",
+    "source": "centralbankofindia.co.in + MyScheme.gov.in"
+  },
+  {
+    "id": "naps",
+    "name": "National Apprenticeship Promotion Scheme (Stipend Support)",
+    "body": "Ministry of Skill Development (DGT)",
+    "benefit_summary": "Government shares apprentice stipend cost (₹1,500/month) with employers.",
+    "benefit_amount": 18000,
+    "ease_score": 4,
+    "category_boost": [],
+    "criteria": [
+      {
+        "field": "occupation_stage",
+        "operator": "in",
+        "value": [
+          "student",
+          "unemployed",
+          "other"
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Seeking apprenticeship"
+      },
+      {
+        "field": "age",
+        "operator": "between",
+        "value": [
+          14,
+          70
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Age 14+"
+      }
+    ],
+    "documents": [
+      "Aadhaar",
+      "Education certificates",
+      "Bank account"
+    ],
+    "channel": "Register at apprenticeshipindia.gov.in and accept an offer.",
+    "url": "https://www.apprenticeshipindia.gov.in/",
+    "last_verified": "2026-10-10",
+    "source": "apprenticeshipindia.gov.in + MyScheme.gov.in"
+  },
+  {
+    "id": "ka-elevate",
+    "name": "Karnataka Elevate (Startup Grants)",
+    "body": "Karnataka Startup Cell",
+    "benefit_summary": "Grants up to ₹50L for early-stage Karnataka startups via Elevate calls.",
+    "benefit_amount": 5000000,
+    "ease_score": 2,
+    "category_boost": [],
+    "criteria": [
+      {
+        "field": "state",
+        "operator": "equals",
+        "value": "Karnataka",
+        "required": true,
+        "actionable": false,
+        "fix_hint": "Karnataka registration is mandatory — not fixable short-term.",
+        "label": "Karnataka startup"
+      },
+      {
+        "field": "occupation_stage",
+        "operator": "in",
+        "value": [
+          "aspiring entrepreneur",
+          "existing business"
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Startup intent"
+      },
+      {
+        "field": "age",
+        "operator": "between",
+        "value": [
+          18,
+          70
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Founder age 18+"
+      }
+    ],
+    "documents": [
+      "DPIIT/startup-Karnataka registration",
+      "Pitch deck",
+      "Incorporation proof"
+    ],
+    "channel": "Apply during Elevate calls at startup.karnataka.gov.in.",
+    "url": "https://startup.karnataka.gov.in/",
+    "last_verified": "2026-10-10",
+    "source": "startup.karnataka.gov.in + MyScheme.gov.in"
+  },
+  {
+    "id": "ka-kaushalya",
+    "name": "Kaushalya Karnataka (Free Skill Training)",
+    "body": "Karnataka Skill Development Corporation",
+    "benefit_summary": "Free short-term skill training + placement support for youth 18–35.",
+    "benefit_amount": 15000,
+    "ease_score": 4,
+    "category_boost": [],
+    "criteria": [
+      {
+        "field": "state",
+        "operator": "equals",
+        "value": "Karnataka",
+        "required": true,
+        "actionable": false,
+        "fix_hint": "Karnataka domicile required.",
+        "label": "Karnataka resident"
+      },
+      {
+        "field": "age",
+        "operator": "between",
+        "value": [
+          18,
+          35
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Age 18–35"
+      },
+      {
+        "field": "occupation_stage",
+        "operator": "in",
+        "value": [
+          "student",
+          "unemployed",
+          "other",
+          "salaried"
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Seeking skills/placement"
+      }
+    ],
+    "documents": [
+      "Aadhaar",
+      "Domicile proof",
+      "Education certificates"
+    ],
+    "channel": "Register at Seva Sindhu / district skill mission.",
+    "url": "https://sevasindhu.karnataka.gov.in/",
+    "last_verified": "2026-10-10",
+    "source": "sevasindhu.karnataka.gov.in + MyScheme.gov.in"
+  },
+  {
+    "id": "mh-mavim",
+    "name": "MAVIM Tejaswini (Women SHG Support, Maharashtra)",
+    "body": "Mahila Arthik Vikas Mahamandal",
+    "benefit_summary": "Micro-loans + enterprise support for rural women's SHGs.",
+    "benefit_amount": 200000,
+    "ease_score": 3,
+    "category_boost": [
+      "female",
+      "women"
+    ],
+    "criteria": [
+      {
+        "field": "state",
+        "operator": "equals",
+        "value": "Maharashtra",
+        "required": true,
+        "actionable": false,
+        "fix_hint": "Maharashtra residence required.",
+        "label": "Maharashtra resident"
+      },
+      {
+        "field": "gender",
+        "operator": "equals",
+        "value": "Female",
+        "required": true,
+        "actionable": false,
+        "label": "Woman member"
+      },
+      {
+        "field": "income_band",
+        "operator": "in",
+        "value": [
+          "under 1 lakh",
+          "1 to 2.5 lakh"
+        ],
+        "required": true,
+        "actionable": false,
+        "fix_hint": "Low-income focus — check CMRC norms.",
+        "label": "Low-income household"
+      }
+    ],
+    "documents": [
+      "Aadhaar",
+      "SHG membership",
+      "Domicile proof"
+    ],
+    "channel": "Via village CMRC / MAVIM district office.",
+    "url": "https://mavimindia.org/",
+    "last_verified": "2026-10-10",
+    "source": "mavimindia.org + MyScheme.gov.in"
+  },
+  {
+    "id": "mh-lek-ladki",
+    "name": "Lek Ladki (Girl-Child Grants, Maharashtra)",
+    "body": "Govt. of Maharashtra (WCD Dept.)",
+    "benefit_summary": "Staged grants totalling ~₹1L for girls in Yellow/Orange ration-card families.",
+    "benefit_amount": 101000,
+    "ease_score": 3,
+    "category_boost": [
+      "female",
+      "women"
+    ],
+    "criteria": [
+      {
+        "field": "state",
+        "operator": "equals",
+        "value": "Maharashtra",
+        "required": true,
+        "actionable": false,
+        "fix_hint": "Maharashtra residence required.",
+        "label": "Maharashtra resident"
+      },
+      {
+        "field": "gender",
+        "operator": "equals",
+        "value": "Female",
+        "required": true,
+        "actionable": false,
+        "label": "Girl child"
+      },
+      {
+        "field": "age",
+        "operator": "between",
+        "value": [
+          5,
+          18
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Under 18"
+      },
+      {
+        "field": "income_band",
+        "operator": "in",
+        "value": [
+          "under 1 lakh",
+          "1 to 2.5 lakh"
+        ],
+        "required": true,
+        "actionable": false,
+        "fix_hint": "Ration-card income criteria apply.",
+        "label": "Low-income family"
+      }
+    ],
+    "documents": [
+      "Birth certificate",
+      "Ration card",
+      "Aadhaar of parents/child",
+      "Domicile proof"
+    ],
+    "channel": "Apply at anganwadi / WCD office or Aaple Sarkar portal.",
+    "url": "https://www.maharashtra.gov.in/",
+    "last_verified": "2026-10-10",
+    "source": "maharashtra.gov.in + MyScheme.gov.in"
+  },
+  {
+    "id": "mh-yuva-prashikshan",
+    "name": "Mukhyamantri Yuva Karya Prashikshan (Maharashtra Internships)",
+    "body": "Govt. of Maharashtra",
+    "benefit_summary": "₹6,000–₹10,000/month internship stipend for youth 18–35.",
+    "benefit_amount": 120000,
+    "ease_score": 4,
+    "category_boost": [],
+    "criteria": [
+      {
+        "field": "state",
+        "operator": "equals",
+        "value": "Maharashtra",
+        "required": true,
+        "actionable": false,
+        "fix_hint": "Maharashtra domicile required.",
+        "label": "Maharashtra resident"
+      },
+      {
+        "field": "age",
+        "operator": "between",
+        "value": [
+          18,
+          35
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Age 18–35"
+      },
+      {
+        "field": "education_level",
+        "operator": "in",
+        "value": [
+          "school",
+          "diploma",
+          "undergraduate",
+          "postgraduate"
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "12th/diploma/graduate"
+      }
+    ],
+    "documents": [
+      "Domicile",
+      "Education certificates",
+      "Aadhaar",
+      "Bank account"
+    ],
+    "channel": "Register on the state apprenticeship/internship portal.",
+    "url": "https://www.maharashtra.gov.in/",
+    "last_verified": "2026-10-10",
+    "source": "maharashtra.gov.in + MyScheme.gov.in"
+  },
+  {
+    "id": "tn-tanseed",
+    "name": "TANSEED (StartupTN Seed Grant)",
+    "body": "StartupTN",
+    "benefit_summary": "Seed grants up to ~₹15L for Tamil Nadu startups.",
+    "benefit_amount": 1500000,
+    "ease_score": 2,
+    "category_boost": [],
+    "criteria": [
+      {
+        "field": "state",
+        "operator": "equals",
+        "value": "Tamil Nadu",
+        "required": true,
+        "actionable": false,
+        "fix_hint": "Tamil Nadu registration required.",
+        "label": "Tamil Nadu startup"
+      },
+      {
+        "field": "occupation_stage",
+        "operator": "in",
+        "value": [
+          "aspiring entrepreneur",
+          "existing business"
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Startup intent"
+      },
+      {
+        "field": "age",
+        "operator": "between",
+        "value": [
+          18,
+          70
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Founder age 18+"
+      }
+    ],
+    "documents": [
+      "StartupTN registration",
+      "Pitch deck",
+      "Incorporation proof"
+    ],
+    "channel": "Apply during TANSEED calls at startuptn.in.",
+    "url": "https://startuptn.in/",
+    "last_verified": "2026-10-10",
+    "source": "startuptn.in + MyScheme.gov.in"
+  },
+  {
+    "id": "tn-pudhumai",
+    "name": "Pudhumai Penn (TN Girls' Higher-Education Aid)",
+    "body": "Govt. of Tamil Nadu (Social Welfare Dept.)",
+    "benefit_summary": "₹1,000/month for girls from government schools pursuing higher education.",
+    "benefit_amount": 12000,
+    "ease_score": 4,
+    "category_boost": [
+      "female",
+      "women"
+    ],
+    "criteria": [
+      {
+        "field": "state",
+        "operator": "equals",
+        "value": "Tamil Nadu",
+        "required": true,
+        "actionable": false,
+        "fix_hint": "Tamil Nadu schooling required.",
+        "label": "Tamil Nadu student"
+      },
+      {
+        "field": "gender",
+        "operator": "equals",
+        "value": "Female",
+        "required": true,
+        "actionable": false,
+        "label": "Girl student"
+      },
+      {
+        "field": "occupation_stage",
+        "operator": "equals",
+        "value": "student",
+        "required": true,
+        "actionable": false,
+        "label": "Active student"
+      },
+      {
+        "field": "education_level",
+        "operator": "in",
+        "value": [
+          "undergraduate",
+          "postgraduate",
+          "diploma"
+        ],
+        "required": true,
+        "actionable": true,
+        "fix_hint": "For students entering higher education after school.",
+        "label": "Higher-education course"
+      }
+    ],
+    "documents": [
+      "School TC (govt school proof)",
+      "College admission proof",
+      "Aadhaar",
+      "Bank account"
+    ],
+    "channel": "Apply via school/college or the state social welfare portal.",
+    "url": "https://www.tn.gov.in/",
+    "last_verified": "2026-10-10",
+    "source": "tn.gov.in + MyScheme.gov.in"
+  },
+  {
+    "id": "tg-kalyana",
+    "name": "Kalyana Lakshmi (Marriage Grant, Telangana)",
+    "body": "Govt. of Telangana",
+    "benefit_summary": "₹1,00,116 one-time grant for SC/ST/BC brides in income-capped families.",
+    "benefit_amount": 100116,
+    "ease_score": 3,
+    "category_boost": [
+      "sc",
+      "st",
+      "obc",
+      "female",
+      "women"
+    ],
+    "criteria": [
+      {
+        "field": "state",
+        "operator": "equals",
+        "value": "Telangana",
+        "required": true,
+        "actionable": false,
+        "fix_hint": "Telangana residence required.",
+        "label": "Telangana resident"
+      },
+      {
+        "field": "gender",
+        "operator": "equals",
+        "value": "Female",
+        "required": true,
+        "actionable": false,
+        "label": "Bride applicant"
+      },
+      {
+        "field": "social_category",
+        "operator": "in",
+        "value": [
+          "SC",
+          "ST",
+          "OBC",
+          "EWS"
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "SC/ST/BC/EBC group"
+      },
+      {
+        "field": "income_band",
+        "operator": "in",
+        "value": [
+          "under 1 lakh",
+          "1 to 2.5 lakh"
+        ],
+        "required": true,
+        "actionable": false,
+        "fix_hint": "Income caps apply — not changeable.",
+        "label": "Income within cap"
+      }
+    ],
+    "documents": [
+      "Age + caste + income certificates",
+      "Marriage invitation / certificate",
+      "Bank account"
+    ],
+    "channel": "Apply at MeeSeva centres or telangana.gov.in.",
+    "url": "https://www.telangana.gov.in/",
+    "last_verified": "2026-10-10",
+    "source": "telangana.gov.in + MyScheme.gov.in"
+  },
+  {
+    "id": "tg-rythu",
+    "name": "Rythu Bharosa (Farmer Support, Telangana)",
+    "body": "Govt. of Telangana (Agriculture Dept.)",
+    "benefit_summary": "Seasonal per-acre financial support to Telangana farmers.",
+    "benefit_amount": 15000,
+    "ease_score": 4,
+    "category_boost": [],
+    "criteria": [
+      {
+        "field": "state",
+        "operator": "equals",
+        "value": "Telangana",
+        "required": true,
+        "actionable": false,
+        "fix_hint": "Telangana farmland required.",
+        "label": "Telangana farmer"
+      },
+      {
+        "field": "occupation_stage",
+        "operator": "equals",
+        "value": "farmer",
+        "required": true,
+        "actionable": false,
+        "label": "Farmer"
+      }
+    ],
+    "documents": [
+      "Pattadar passbook",
+      "Aadhaar",
+      "Bank account"
+    ],
+    "channel": "Via agriculture extension officer / Rythu Vedika.",
+    "url": "https://www.telangana.gov.in/",
+    "last_verified": "2026-10-10",
+    "source": "telangana.gov.in + MyScheme.gov.in"
+  },
+  {
+    "id": "tg-dalit-bandhu",
+    "name": "Dalit Bandhu (One-Time Grant, Telangana)",
+    "body": "Govt. of Telangana",
+    "benefit_summary": "One-time ₹10L grant per eligible SC family for livelihood investment.",
+    "benefit_amount": 1000000,
+    "ease_score": 2,
+    "category_boost": [
+      "sc"
+    ],
+    "criteria": [
+      {
+        "field": "state",
+        "operator": "equals",
+        "value": "Telangana",
+        "required": true,
+        "actionable": false,
+        "fix_hint": "Telangana residence required.",
+        "label": "Telangana resident"
+      },
+      {
+        "field": "social_category",
+        "operator": "equals",
+        "value": "SC",
+        "required": true,
+        "actionable": false,
+        "label": "SC family"
+      },
+      {
+        "field": "age",
+        "operator": "between",
+        "value": [
+          18,
+          70
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Adult applicant 18+"
+      }
+    ],
+    "documents": [
+      "Caste certificate",
+      "Aadhaar",
+      "Livelihood plan",
+      "Bank account"
+    ],
+    "channel": "Through district collector / Dalit Bandhu units (phase-wise rollout).",
+    "url": "https://www.telangana.gov.in/",
+    "last_verified": "2026-10-10",
+    "source": "telangana.gov.in + MyScheme.gov.in"
+  },
+  {
+    "id": "kl-kudumbashree",
+    "name": "Kudumbashree Micro-Enterprise Loans (Kerala)",
+    "body": "Kudumbashree Mission",
+    "benefit_summary": "Subsidised micro-enterprise loans via neighbourhood groups for women.",
+    "benefit_amount": 250000,
+    "ease_score": 3,
+    "category_boost": [
+      "female",
+      "women"
+    ],
+    "criteria": [
+      {
+        "field": "state",
+        "operator": "equals",
+        "value": "Kerala",
+        "required": true,
+        "actionable": false,
+        "fix_hint": "Kerala residence required.",
+        "label": "Kerala resident"
+      },
+      {
+        "field": "gender",
+        "operator": "equals",
+        "value": "Female",
+        "required": true,
+        "actionable": false,
+        "label": "Woman member"
+      },
+      {
+        "field": "income_band",
+        "operator": "in",
+        "value": [
+          "under 1 lakh",
+          "1 to 2.5 lakh"
+        ],
+        "required": true,
+        "actionable": false,
+        "fix_hint": "Priority to low-income NHG families.",
+        "label": "Low-income household"
+      }
+    ],
+    "documents": [
+      "NHG membership",
+      "Aadhaar",
+      "Enterprise plan"
+    ],
+    "channel": "Via CDS / NHG and partner banks.",
+    "url": "https://kudumbashree.org/",
+    "last_verified": "2026-10-10",
+    "source": "kudumbashree.org + MyScheme.gov.in"
+  },
+  {
+    "id": "kl-vidya",
+    "name": "Vidya Samunnathi Scholarship (Kerala)",
+    "body": "Kerala State Forward Communities Welfare Corp.",
+    "benefit_summary": "Scholarships for forward-community/EWS students (family income <₹2L).",
+    "benefit_amount": 15000,
+    "ease_score": 3,
+    "category_boost": [],
+    "criteria": [
+      {
+        "field": "state",
+        "operator": "equals",
+        "value": "Kerala",
+        "required": true,
+        "actionable": false,
+        "fix_hint": "Kerala domicile required.",
+        "label": "Kerala student"
+      },
+      {
+        "field": "occupation_stage",
+        "operator": "equals",
+        "value": "student",
+        "required": true,
+        "actionable": false,
+        "label": "Active student"
+      },
+      {
+        "field": "social_category",
+        "operator": "in",
+        "value": [
+          "General",
+          "EWS"
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Forward-community group"
+      },
+      {
+        "field": "income_band",
+        "operator": "in",
+        "value": [
+          "under 1 lakh",
+          "1 to 2.5 lakh"
+        ],
+        "required": true,
+        "actionable": false,
+        "fix_hint": "Income cap ₹2L — not changeable.",
+        "label": "Income within cap"
+      }
+    ],
+    "documents": [
+      "Community + income certificates",
+      "Marksheet",
+      "Aadhaar",
+      "Bank account"
+    ],
+    "channel": "Apply on the KSWCFC scholarship portal during the window.",
+    "application_window": {
+      "opens": "08-01",
+      "closes": "11-15",
+      "note": "Typical annual window - confirm exact dates on the official portal."
+    },
+    "url": "https://www.kerala.gov.in/",
+    "last_verified": "2026-10-10",
+    "source": "kerala.gov.in + MyScheme.gov.in"
+  },
+  {
+    "id": "dl-merit",
+    "name": "Delhi Merit Scholarship (SC/ST/OBC/Minority School Students)",
+    "body": "Govt. of NCT of Delhi (Education Dept.)",
+    "benefit_summary": "₹1,000–₹5,000/year merit aid for school students of eligible groups.",
+    "benefit_amount": 5000,
+    "ease_score": 4,
+    "category_boost": [
+      "sc",
+      "st",
+      "obc"
+    ],
+    "criteria": [
+      {
+        "field": "state",
+        "operator": "equals",
+        "value": "Delhi",
+        "required": true,
+        "actionable": false,
+        "fix_hint": "Delhi schooling required.",
+        "label": "Delhi student"
+      },
+      {
+        "field": "occupation_stage",
+        "operator": "equals",
+        "value": "student",
+        "required": true,
+        "actionable": false,
+        "label": "Active student"
+      },
+      {
+        "field": "education_level",
+        "operator": "equals",
+        "value": "school",
+        "required": true,
+        "actionable": false,
+        "label": "School level"
+      },
+      {
+        "field": "social_category",
+        "operator": "in",
+        "value": [
+          "SC",
+          "ST",
+          "OBC"
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "SC/ST/OBC group"
+      },
+      {
+        "field": "income_band",
+        "operator": "in",
+        "value": [
+          "under 1 lakh",
+          "1 to 2.5 lakh"
+        ],
+        "required": true,
+        "actionable": false,
+        "fix_hint": "Income caps apply.",
+        "label": "Income within cap"
+      }
+    ],
+    "documents": [
+      "Caste + income certificates",
+      "School bonafide",
+      "Aadhaar"
+    ],
+    "channel": "Via school / Delhi education portal.",
+    "application_window": {
+      "opens": "08-01",
+      "closes": "12-31",
+      "note": "Typical annual window - confirm exact dates on the official portal."
+    },
+    "url": "https://delhi.gov.in/",
+    "last_verified": "2026-10-10",
+    "source": "delhi.gov.in + MyScheme.gov.in"
+  },
+  {
+    "id": "up-kanya",
+    "name": "Kanya Sumangala (Girl-Child Grants, UP)",
+    "body": "Govt. of Uttar Pradesh (WCD Dept.)",
+    "benefit_summary": "Up to ₹25,000 in six stages for girl children (family income <₹3L).",
+    "benefit_amount": 25000,
+    "ease_score": 3,
+    "category_boost": [
+      "female",
+      "women"
+    ],
+    "criteria": [
+      {
+        "field": "state",
+        "operator": "equals",
+        "value": "Uttar Pradesh",
+        "required": true,
+        "actionable": false,
+        "fix_hint": "UP domicile required.",
+        "label": "UP resident"
+      },
+      {
+        "field": "gender",
+        "operator": "equals",
+        "value": "Female",
+        "required": true,
+        "actionable": false,
+        "label": "Girl child"
+      },
+      {
+        "field": "income_band",
+        "operator": "in",
+        "value": [
+          "under 1 lakh",
+          "1 to 2.5 lakh",
+          "2.5 to 6 lakh"
+        ],
+        "required": true,
+        "actionable": false,
+        "fix_hint": "Income cap ₹3L — not changeable.",
+        "label": "Income within cap"
+      }
+    ],
+    "documents": [
+      "Birth certificate",
+      "Income certificate",
+      "Aadhaar of parents/child",
+      "Bank account"
+    ],
+    "channel": "Apply at mksy.up.gov.in or block office.",
+    "url": "https://up.gov.in/",
+    "last_verified": "2026-10-10",
+    "source": "up.gov.in + MyScheme.gov.in"
+  },
+  {
+    "id": "up-yuva-swarozgar",
+    "name": "Mukhyamantri Yuva Swarozgar (UP Youth Enterprise Loans)",
+    "body": "Govt. of Uttar Pradesh (DIC)",
+    "benefit_summary": "Loans up to ₹25L (industry) / ₹10L (service) with margin-money help for youth 18–40.",
+    "benefit_amount": 2500000,
+    "ease_score": 3,
+    "category_boost": [],
+    "criteria": [
+      {
+        "field": "state",
+        "operator": "equals",
+        "value": "Uttar Pradesh",
+        "required": true,
+        "actionable": false,
+        "fix_hint": "UP domicile required.",
+        "label": "UP resident"
+      },
+      {
+        "field": "age",
+        "operator": "between",
+        "value": [
+          18,
+          40
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Age 18–40"
+      },
+      {
+        "field": "occupation_stage",
+        "operator": "equals",
+        "value": "aspiring entrepreneur",
+        "required": true,
+        "actionable": false,
+        "label": "New enterprise plan"
+      }
+    ],
+    "documents": [
+      "Domicile",
+      "Project report",
+      "Education proof (10th pass where required)",
+      "Bank account"
+    ],
+    "channel": "Apply at district DIC / employment office.",
+    "url": "https://up.gov.in/",
+    "last_verified": "2026-10-10",
+    "source": "up.gov.in + MyScheme.gov.in"
+  },
+  {
+    "id": "up-odop",
+    "name": "ODOP Support (One District One Product, UP)",
+    "body": "Govt. of Uttar Pradesh (ODOP Cell)",
+    "benefit_summary": "Margin-money, toolkits and marketing support for ODOP micro-units and artisans.",
+    "benefit_amount": 500000,
+    "ease_score": 3,
+    "category_boost": [],
+    "criteria": [
+      {
+        "field": "state",
+        "operator": "equals",
+        "value": "Uttar Pradesh",
+        "required": true,
+        "actionable": false,
+        "fix_hint": "UP-based unit required.",
+        "label": "UP unit"
+      },
+      {
+        "field": "occupation_stage",
+        "operator": "in",
+        "value": [
+          "aspiring entrepreneur",
+          "existing business",
+          "artisan",
+          "farmer"
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Producer/artisan unit"
+      },
+      {
+        "field": "sector",
+        "operator": "in",
+        "value": [
+          "handicraft",
+          "manufacturing",
+          "agriculture"
+        ],
+        "required": true,
+        "actionable": true,
+        "fix_hint": "Unit must make the district's notified ODOP product.",
+        "label": "ODOP product sector"
+      }
+    ],
+    "documents": [
+      "Domicile",
+      "Udyam registration",
+      "Product proof",
+      "Bank account"
+    ],
+    "channel": "Apply at DIC / ODOP cell with product details.",
+    "url": "https://up.gov.in/",
+    "last_verified": "2026-10-10",
+    "source": "up.gov.in + MyScheme.gov.in"
+  },
+  {
+    "id": "gj-vahli",
+    "name": "Vahli Dikri Yojana (Girl-Child Support, Gujarat)",
+    "body": "Govt. of Gujarat (WCD Dept.)",
+    "benefit_summary": "Staged support ~₹1.1L for first/second girl children in low-income families.",
+    "benefit_amount": 110000,
+    "ease_score": 3,
+    "category_boost": [
+      "female",
+      "women"
+    ],
+    "criteria": [
+      {
+        "field": "state",
+        "operator": "equals",
+        "value": "Gujarat",
+        "required": true,
+        "actionable": false,
+        "fix_hint": "Gujarat domicile required.",
+        "label": "Gujarat resident"
+      },
+      {
+        "field": "gender",
+        "operator": "equals",
+        "value": "Female",
+        "required": true,
+        "actionable": false,
+        "label": "Girl child"
+      },
+      {
+        "field": "income_band",
+        "operator": "in",
+        "value": [
+          "under 1 lakh",
+          "1 to 2.5 lakh"
+        ],
+        "required": true,
+        "actionable": false,
+        "fix_hint": "Income cap ~₹2L — not changeable.",
+        "label": "Income within cap"
+      }
+    ],
+    "documents": [
+      "Birth certificate",
+      "Income certificate",
+      "Aadhaar",
+      "Bank account"
+    ],
+    "channel": "Apply at anganwadi / district WCD office.",
+    "url": "https://gujaratindia.gov.in/",
+    "last_verified": "2026-10-10",
+    "source": "gujaratindia.gov.in + MyScheme.gov.in"
+  },
+  {
+    "id": "gj-mahila-utkarsh",
+    "name": "Mahila Utkarsh (Interest-Free SHG Loans, Gujarat)",
+    "body": "Govt. of Gujarat (GLPC)",
+    "benefit_summary": "Interest-free loans up to ₹1L for women's self-help groups.",
+    "benefit_amount": 100000,
+    "ease_score": 4,
+    "category_boost": [
+      "female",
+      "women"
+    ],
+    "criteria": [
+      {
+        "field": "state",
+        "operator": "equals",
+        "value": "Gujarat",
+        "required": true,
+        "actionable": false,
+        "fix_hint": "Gujarat residence required.",
+        "label": "Gujarat resident"
+      },
+      {
+        "field": "gender",
+        "operator": "equals",
+        "value": "Female",
+        "required": true,
+        "actionable": false,
+        "label": "Woman member"
+      },
+      {
+        "field": "income_band",
+        "operator": "in",
+        "value": [
+          "under 1 lakh",
+          "1 to 2.5 lakh"
+        ],
+        "required": true,
+        "actionable": false,
+        "fix_hint": "SHG income norms apply.",
+        "label": "Low-income household"
+      }
+    ],
+    "documents": [
+      "SHG membership",
+      "Aadhaar",
+      "Bank account"
+    ],
+    "channel": "Via GLPC / district livelihood mission.",
+    "url": "https://gujaratindia.gov.in/",
+    "last_verified": "2026-10-10",
+    "source": "gujaratindia.gov.in + MyScheme.gov.in"
+  },
+  {
+    "id": "rj-anuprati",
+    "name": "Anuprati Coaching Scheme (Rajasthan)",
+    "body": "Govt. of Rajasthan (Social Justice Dept.)",
+    "benefit_summary": "Free competitive-exam coaching + aid for SC/ST/OBC/EWS/MBC students (income <₹8L).",
+    "benefit_amount": 40000,
+    "ease_score": 3,
+    "category_boost": [
+      "sc",
+      "st",
+      "obc"
+    ],
+    "criteria": [
+      {
+        "field": "state",
+        "operator": "equals",
+        "value": "Rajasthan",
+        "required": true,
+        "actionable": false,
+        "fix_hint": "Rajasthan domicile required.",
+        "label": "Rajasthan student"
+      },
+      {
+        "field": "occupation_stage",
+        "operator": "equals",
+        "value": "student",
+        "required": true,
+        "actionable": false,
+        "label": "Student"
+      },
+      {
+        "field": "social_category",
+        "operator": "in",
+        "value": [
+          "SC",
+          "ST",
+          "OBC",
+          "EWS"
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Eligible group"
+      },
+      {
+        "field": "income_band",
+        "operator": "in",
+        "value": [
+          "under 1 lakh",
+          "1 to 2.5 lakh",
+          "2.5 to 6 lakh",
+          "6 to 12 lakh"
+        ],
+        "required": true,
+        "actionable": false,
+        "fix_hint": "Income cap ₹8L — not changeable.",
+        "label": "Income within cap"
+      }
+    ],
+    "documents": [
+      "Caste + income + domicile certificates",
+      "Marksheet",
+      "Aadhaar"
+    ],
+    "channel": "Apply on SSO Rajasthan portal during the window.",
+    "application_window": {
+      "opens": "01-15",
+      "closes": "03-31",
+      "note": "Typical annual window - confirm exact dates on the official portal."
+    },
+    "url": "https://sso.rajasthan.gov.in/",
+    "last_verified": "2026-10-10",
+    "source": "sso.rajasthan.gov.in + MyScheme.gov.in"
+  },
+  {
+    "id": "wb-kanyashree",
+    "name": "Kanyashree (Girl Students, West Bengal)",
+    "body": "Govt. of West Bengal (WCD Dept.)",
+    "benefit_summary": "₹1,000/year scholarship + ₹25,000 one-time grant for unmarried girls 13–18 in education.",
+    "benefit_amount": 25000,
+    "ease_score": 4,
+    "category_boost": [
+      "female",
+      "women"
+    ],
+    "criteria": [
+      {
+        "field": "state",
+        "operator": "equals",
+        "value": "West Bengal",
+        "required": true,
+        "actionable": false,
+        "fix_hint": "West Bengal residence required.",
+        "label": "West Bengal resident"
+      },
+      {
+        "field": "gender",
+        "operator": "equals",
+        "value": "Female",
+        "required": true,
+        "actionable": false,
+        "label": "Girl student"
+      },
+      {
+        "field": "age",
+        "operator": "between",
+        "value": [
+          13,
+          18
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Age 13–18"
+      },
+      {
+        "field": "occupation_stage",
+        "operator": "equals",
+        "value": "student",
+        "required": true,
+        "actionable": false,
+        "label": "In education"
+      },
+      {
+        "field": "income_band",
+        "operator": "in",
+        "value": [
+          "under 1 lakh",
+          "1 to 2.5 lakh"
+        ],
+        "required": true,
+        "actionable": false,
+        "fix_hint": "Family income cap ~₹1.2L — not changeable.",
+        "label": "Income within cap"
+      }
+    ],
+    "documents": [
+      "Birth + income certificates",
+      "School/college bonafide",
+      "Bank account"
+    ],
+    "channel": "Apply via school/college Kanyashree cell.",
+    "url": "https://www.wb.gov.in/",
+    "last_verified": "2026-10-10",
+    "source": "wb.gov.in + MyScheme.gov.in"
+  },
+  {
+    "id": "wb-lakshmi",
+    "name": "Lakshmir Bhandar (Women's Monthly Support, WB)",
+    "body": "Govt. of West Bengal",
+    "benefit_summary": "₹1,000–₹1,200/month for women aged 25–60.",
+    "benefit_amount": 14400,
+    "ease_score": 5,
+    "category_boost": [
+      "female",
+      "women"
+    ],
+    "criteria": [
+      {
+        "field": "state",
+        "operator": "equals",
+        "value": "West Bengal",
+        "required": true,
+        "actionable": false,
+        "fix_hint": "West Bengal residence required.",
+        "label": "West Bengal resident"
+      },
+      {
+        "field": "gender",
+        "operator": "equals",
+        "value": "Female",
+        "required": true,
+        "actionable": false,
+        "label": "Woman applicant"
+      },
+      {
+        "field": "age",
+        "operator": "between",
+        "value": [
+          25,
+          60
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Age 25–60"
+      }
+    ],
+    "documents": [
+      "Aadhaar",
+      "Swasthya Sathi / voter proof",
+      "Bank account",
+      "Caste certificate for higher slab"
+    ],
+    "channel": "Apply at Duare Sarkar camps or block office.",
+    "url": "https://www.wb.gov.in/",
+    "last_verified": "2026-10-10",
+    "source": "wb.gov.in + MyScheme.gov.in"
+  },
+  {
+    "id": "wb-student-card",
+    "name": "WB Student Credit Card (Education Loans)",
+    "body": "Govt. of West Bengal (Higher Education Dept.)",
+    "benefit_summary": "Education loans up to ₹10L at 4% for WB students up to age 40.",
+    "benefit_amount": 1000000,
+    "ease_score": 3,
+    "category_boost": [],
+    "criteria": [
+      {
+        "field": "state",
+        "operator": "equals",
+        "value": "West Bengal",
+        "required": true,
+        "actionable": false,
+        "fix_hint": "West Bengal residence/study required.",
+        "label": "West Bengal student"
+      },
+      {
+        "field": "occupation_stage",
+        "operator": "equals",
+        "value": "student",
+        "required": true,
+        "actionable": false,
+        "label": "Student"
+      },
+      {
+        "field": "age",
+        "operator": "between",
+        "value": [
+          14,
+          40
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Age 40 or below"
+      }
+    ],
+    "documents": [
+      "Admission proof",
+      "Course fee structure",
+      "Aadhaar",
+      "Co-borrower KYC"
+    ],
+    "channel": "Apply online and via banks — interest subvention through the state.",
+    "url": "https://www.wb.gov.in/",
+    "last_verified": "2026-10-10",
+    "source": "wb.gov.in + MyScheme.gov.in"
+  },
+  {
+    "id": "br-udyami",
+    "name": "Mukhyamantri Udyami Yojana (Bihar Youth Enterprise)",
+    "body": "Govt. of Bihar (Industries Dept.)",
+    "benefit_summary": "₹10L (50% subsidy + 50% loan) for SC/ST/EWS/women/minority youth enterprises.",
+    "benefit_amount": 1000000,
+    "ease_score": 3,
+    "category_boost": [
+      "sc",
+      "st",
+      "female",
+      "women"
+    ],
+    "criteria": [
+      {
+        "field": "state",
+        "operator": "equals",
+        "value": "Bihar",
+        "required": true,
+        "actionable": false,
+        "fix_hint": "Bihar domicile required.",
+        "label": "Bihar resident"
+      },
+      {
+        "field": "age",
+        "operator": "between",
+        "value": [
+          18,
+          50
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Age 18–50"
+      },
+      {
+        "field": "occupation_stage",
+        "operator": "equals",
+        "value": "aspiring entrepreneur",
+        "required": true,
+        "actionable": false,
+        "label": "New enterprise plan"
+      }
+    ],
+    "documents": [
+      "Domicile + caste certificates",
+      "Project report",
+      "Bank account"
+    ],
+    "channel": "Apply on the industries portal during the annual window.",
+    "application_window": {
+      "opens": "09-01",
+      "closes": "10-31",
+      "note": "Typical annual window - confirm exact dates on the official portal."
+    },
+    "url": "https://state.bihar.gov.in/",
+    "last_verified": "2026-10-10",
+    "source": "state.bihar.gov.in + MyScheme.gov.in"
+  },
+  {
+    "id": "br-kanya",
+    "name": "Kanya Utthan Yojana (Girl Support, Bihar)",
+    "body": "Govt. of Bihar",
+    "benefit_summary": "Lifecycle grants for girls including ₹10,000 after intermediate (unmarried).",
+    "benefit_amount": 50000,
+    "ease_score": 3,
+    "category_boost": [
+      "female",
+      "women"
+    ],
+    "criteria": [
+      {
+        "field": "state",
+        "operator": "equals",
+        "value": "Bihar",
+        "required": true,
+        "actionable": false,
+        "fix_hint": "Bihar domicile required.",
+        "label": "Bihar resident"
+      },
+      {
+        "field": "gender",
+        "operator": "equals",
+        "value": "Female",
+        "required": true,
+        "actionable": false,
+        "label": "Girl student"
+      },
+      {
+        "field": "occupation_stage",
+        "operator": "equals",
+        "value": "student",
+        "required": true,
+        "actionable": false,
+        "label": "In education"
+      },
+      {
+        "field": "income_band",
+        "operator": "in",
+        "value": [
+          "under 1 lakh",
+          "1 to 2.5 lakh"
+        ],
+        "required": true,
+        "actionable": false,
+        "fix_hint": "Income criteria per component.",
+        "label": "Low-income family"
+      }
+    ],
+    "documents": [
+      "Birth certificate",
+      "School/college proof",
+      "Aadhaar",
+      "Bank account"
+    ],
+    "channel": "Via school/college or Medhasoft portal.",
+    "url": "https://state.bihar.gov.in/",
+    "last_verified": "2026-10-10",
+    "source": "state.bihar.gov.in + MyScheme.gov.in"
+  },
+  {
+    "id": "mp-ladli",
+    "name": "Ladli Laxmi Yojana (Girl-Child Support, MP)",
+    "body": "Govt. of Madhya Pradesh (WCD Dept.)",
+    "benefit_summary": "Staged support totalling ~₹1.4L for eligible girl children.",
+    "benefit_amount": 140000,
+    "ease_score": 3,
+    "category_boost": [
+      "female",
+      "women"
+    ],
+    "criteria": [
+      {
+        "field": "state",
+        "operator": "equals",
+        "value": "Madhya Pradesh",
+        "required": true,
+        "actionable": false,
+        "fix_hint": "MP domicile required.",
+        "label": "MP resident"
+      },
+      {
+        "field": "gender",
+        "operator": "equals",
+        "value": "Female",
+        "required": true,
+        "actionable": false,
+        "label": "Girl child"
+      },
+      {
+        "field": "income_band",
+        "operator": "in",
+        "value": [
+          "under 1 lakh",
+          "1 to 2.5 lakh"
+        ],
+        "required": true,
+        "actionable": false,
+        "fix_hint": "Non-taxpayer family criteria apply.",
+        "label": "Income within cap"
+      }
+    ],
+    "documents": [
+      "Birth certificate",
+      "Domicile",
+      "Aadhaar",
+      "Bank account"
+    ],
+    "channel": "Apply at ladlilaxmi.mp.gov.in or anganwadi.",
+    "url": "https://ladlilaxmi.mp.gov.in/",
+    "last_verified": "2026-10-10",
+    "source": "ladlilaxmi.mp.gov.in + MyScheme.gov.in"
+  },
+  {
+    "id": "mp-udyam-kranti",
+    "name": "Mukhyamantri Udyam Kranti (MP Youth Loans)",
+    "body": "Govt. of Madhya Pradesh",
+    "benefit_summary": "Collateral-free youth enterprise loans with interest subsidy.",
+    "benefit_amount": 1000000,
+    "ease_score": 3,
+    "category_boost": [],
+    "criteria": [
+      {
+        "field": "state",
+        "operator": "equals",
+        "value": "Madhya Pradesh",
+        "required": true,
+        "actionable": false,
+        "fix_hint": "MP domicile required.",
+        "label": "MP resident"
+      },
+      {
+        "field": "age",
+        "operator": "between",
+        "value": [
+          18,
+          40
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Age 18–40"
+      },
+      {
+        "field": "occupation_stage",
+        "operator": "equals",
+        "value": "aspiring entrepreneur",
+        "required": true,
+        "actionable": false,
+        "label": "New enterprise plan"
+      }
+    ],
+    "documents": [
+      "Domicile",
+      "Project report",
+      "Education proof",
+      "Bank account"
+    ],
+    "channel": "Apply at district DIC / employment office.",
+    "url": "https://www.mp.gov.in/",
+    "last_verified": "2026-10-10",
+    "source": "mp.gov.in + MyScheme.gov.in"
+  },
+  {
+    "id": "od-mission-shakti",
+    "name": "Mission Shakti SHG Loans (Odisha Women)",
+    "body": "Govt. of Odisha (Mission Shakti Dept.)",
+    "benefit_summary": "0%-interest loans for women's self-help groups.",
+    "benefit_amount": 1000000,
+    "ease_score": 3,
+    "category_boost": [
+      "female",
+      "women"
+    ],
+    "criteria": [
+      {
+        "field": "state",
+        "operator": "equals",
+        "value": "Odisha",
+        "required": true,
+        "actionable": false,
+        "fix_hint": "Odisha residence required.",
+        "label": "Odisha resident"
+      },
+      {
+        "field": "gender",
+        "operator": "equals",
+        "value": "Female",
+        "required": true,
+        "actionable": false,
+        "label": "Woman member"
+      },
+      {
+        "field": "income_band",
+        "operator": "in",
+        "value": [
+          "under 1 lakh",
+          "1 to 2.5 lakh"
+        ],
+        "required": true,
+        "actionable": false,
+        "fix_hint": "SHG income norms apply.",
+        "label": "Low-income household"
+      }
+    ],
+    "documents": [
+      "SHG membership",
+      "Aadhaar",
+      "Bank account"
+    ],
+    "channel": "Via Mission Shakti federations and banks.",
+    "url": "https://missionshakti.odisha.gov.in/",
+    "last_verified": "2026-10-10",
+    "source": "missionshakti.odisha.gov.in + MyScheme.gov.in"
+  }
+]

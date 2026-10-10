@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Log in / Sign up — SchemeSetu</title>
+<style>
+:root{
+  --navy:#0f2f5c; --navy-d:#0a2344; --ink:#111827; --body:#1f2937; --mut:#5b6472;
+  --line:#d5dae1; --bg:#f4f5f7; --saffron:#e8862d; --red:#b91c1c;
+}
+*{box-sizing:border-box}
+:root{color-scheme:light}
+body{font-family:system-ui,'Segoe UI',Roboto,Arial,sans-serif;margin:0;background:var(--bg);color:var(--body);line-height:1.5;min-height:100vh;display:flex;flex-direction:column}
+a{color:var(--navy);text-decoration:underline;text-underline-offset:2px}
+
+.tri{height:4px;background:linear-gradient(90deg,#ff9933 0 33.4%,#ececec 33.4% 66.7%,#138808 66.7% 100%)}
+header.nav{background:var(--navy);color:#fff}
+header.nav .wrap{max-width:1080px;margin:0 auto;padding:13px 20px;display:flex;align-items:center;gap:10px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff}
+.brand .mk{width:32px;height:32px;background:#fff;color:var(--navy);display:grid;place-items:center;font-weight:800;font-size:16px}
+.brand b{font-size:16.5px}
+
+main{flex:1;display:flex;align-items:flex-start;justify-content:center;padding:56px 16px}
+.card{background:#fff;border:1px solid var(--ink);width:100%;max-width:440px}
+.cardhead{padding:22px 26px 0}
+h1{font-size:23px;font-weight:800;color:var(--ink);margin:0 0 6px;letter-spacing:-.2px}
+.sub{font-size:14px;color:var(--mut);margin:0 0 20px}
+
+.tabs{display:flex;border-bottom:2px solid var(--line);padding:0 26px}
+.tabs button{flex:0 0 auto;background:none;border:0;padding:12px 2px;margin-right:28px;font-size:15px;font-weight:700;color:var(--mut);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px}
+.tabs button.on{color:var(--ink);border-bottom-color:var(--navy)}
+
+form{padding:22px 26px 26px}
+label{display:block;font-size:13.5px;font-weight:700;color:var(--ink);margin:16px 0 6px}
+label:first-child{margin-top:0}
+input{width:100%;padding:12px 13px;border:2px solid #6b7280;border-radius:0;font-size:15.5px;background:#fff;color:var(--ink)}
+input:focus{outline:3px solid #ffdd00;border-color:var(--navy)}
+.hintline{font-size:12.5px;color:var(--mut);margin-top:5px}
+.pwwrap{position:relative}
+.pwwrap input{padding-right:46px}
+.eye{position:absolute;right:0;top:0;height:100%;width:44px;background:none;border:0;border-left:2px solid #e3e6ea;cursor:pointer;color:var(--mut);display:grid;place-items:center}
+.eye:hover{color:var(--ink)}
+button.go{width:100%;margin-top:24px;background:var(--navy);color:#fff;border:0;padding:14px;font-size:16px;font-weight:700;cursor:pointer;box-shadow:0 3px 0 var(--navy-d)}
+button.go:hover{background:#163d76}
+button.go:active{transform:translateY(2px);box-shadow:0 1px 0 var(--navy-d)}
+button.go:disabled{opacity:.6;cursor:wait;transform:none}
+.err{display:none;border-left:5px solid var(--red);background:#fdf0f0;color:#7f1d1d;padding:11px 13px;font-size:14px;margin-top:16px}
+.backlink{display:block;text-align:center;margin:0;padding:16px;border-top:1px solid var(--line);font-size:14px}
+.foot{max-width:440px;margin:14px auto 0;font-size:12.5px;color:var(--mut);text-align:center;padding:0 4px 30px}
+</style>
+</head>
+<body>
+
+<div class="tri"></div>
+<header class="nav">
+  <div class="wrap"><a class="brand" href="/"><span class="mk">S</span><b>SchemeSetu</b></a></div>
+</header>
+
+<main>
+  <div>
+    <div class="card">
+      <div class="cardhead">
+        <h1 id="title">Log in</h1>
+        <p class="sub" id="sub">Free account · guidance only · no sensitive documents needed.</p>
+      </div>
+      <div class="tabs">
+        <button id="tLogin" class="on" onclick="mode('login')">Log in</button>
+        <button id="tSignup" onclick="mode('signup')">Sign up</button>
+      </div>
+      <form onsubmit="go();return false">
+        <div id="nameWrap" style="display:none">
+          <label for="name">Your name</label>
+          <input id="name" placeholder="e.g. Priya Sharma" autocomplete="name"/>
+        </div>
+        <label for="email">Email</label>
+        <input id="email" type="email" placeholder="you@example.com" autocomplete="email"/>
+        <label for="pw">Password</label>
+        <div class="pwwrap">
+          <input id="pw" type="password" placeholder="At least 6 characters" autocomplete="current-password"/>
+          <button type="button" class="eye" onclick="togglePw()" aria-label="Show password">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+        <div class="hintline" id="pwHint" style="display:none">Use at least 6 characters.</div>
+        <button class="go" id="goBtn" type="submit">Continue</button>
+        <div class="err" id="err" role="alert"></div>
+      </form>
+      <a class="backlink" href="/">← Back to home</a>
+    </div>
+    <p class="foot">We never ask for Aadhaar, PAN or bank details. Final eligibility is decided by the scheme authority.</p>
+  </div>
+</main>
+
+<script>
+let M='login';
+if(localStorage.getItem('ss_token')) location.href='/chat';
+function mode(m){
+  M=m;
+  document.getElementById('tLogin').className=m==='login'?'on':'';
+  document.getElementById('tSignup').className=m==='signup'?'on':'';
+  document.getElementById('nameWrap').style.display=m==='signup'?'block':'none';
+  document.getElementById('title').textContent=m==='signup'?'Create your free account':'Log in';
+  document.getElementById('sub').textContent=m==='signup'
+    ?'One minute to sign up — then 8 questions to your ranked schemes.'
+    :'Free account · guidance only · no sensitive documents needed.';
+  document.getElementById('pw').autocomplete=m==='signup'?'new-password':'current-password';
+  document.getElementById('pwHint').style.display=m==='signup'?'block':'none';
+  hideErr();
+}
+function togglePw(){
+  const p=document.getElementById('pw');
+  p.type=p.type==='password'?'text':'password';
+}
+function showErr(t){const e=document.getElementById('err');e.textContent=t;e.style.display='block';}
+function hideErr(){document.getElementById('err').style.display='none';}
+async function go(){
+  hideErr();
+  const btn=document.getElementById('goBtn');
+  const email=document.getElementById('email').value.trim();
+  const pw=document.getElementById('pw').value;
+  const body=M==='signup'?{name:document.getElementById('name').value.trim(),email,password:pw}:{email,password:pw};
+  btn.disabled=true;const old=btn.textContent;btn.textContent='Please wait…';
+  try{
+    const r=await fetch('/auth/'+M,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+    const j=await r.json();
+    if(!r.ok){showErr(j.detail||'Something went wrong.');return;}
+    localStorage.setItem('ss_token',j.token);localStorage.setItem('ss_name',j.name);
+    location.href='/chat';
+  }catch(e){showErr('Network error. Is the server running?');}
+  finally{btn.disabled=false;btn.textContent=old;}
+}
+mode('login');
+</script>
+</body>
+</html>

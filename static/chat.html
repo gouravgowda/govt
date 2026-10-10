@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Assistant — SchemeSetu</title>
+<style>
+:root{
+  --navy:#0f2f5c; --navy-d:#0a2344; --ink:#111827; --body:#1f2937; --mut:#5b6472;
+  --line:#d5dae1; --bg:#f4f5f7; --paper:#fff; --saffron:#e8862d;
+  --green:#1a7f37; --green-bg:#eff7f0; --amber:#b45309; --amber-bg:#fdf6ec;
+  --blue:#1d5cb8; --blue-bg:#eef3fb; --red:#b91c1c;
+}
+*{box-sizing:border-box}
+:root{color-scheme:light}
+body{font-family:system-ui,'Segoe UI',Roboto,Arial,sans-serif;margin:0;background:var(--bg);color:var(--body);line-height:1.55}
+a{color:var(--navy);text-decoration:underline;text-underline-offset:2px}
+:focus-visible{outline:3px solid #ffdd00;outline-offset:2px}
+
+/* ---------- topbar ---------- */
+.top{position:sticky;top:0;z-index:40;background:var(--navy);color:#fff}
+.top .inner{max-width:1180px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:20px}
+.brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:16.5px;color:#fff;text-decoration:none;white-space:nowrap}
+.mark{width:30px;height:30px;background:#fff;color:var(--navy);display:grid;place-items:center;font-weight:800;font-size:15px}
+.prog{flex:1;min-width:120px}
+.ptext{font-size:11.5px;font-weight:700;color:rgba(255,255,255,.85);margin-bottom:5px;letter-spacing:.4px}
+.ptrack{height:8px;background:rgba(255,255,255,.22)}
+#pbar{height:100%;width:0%;background:var(--saffron);transition:width .4s ease}
+.user{display:flex;align-items:center;gap:10px}
+.uav{width:30px;height:30px;background:#fff;color:var(--navy);font-weight:800;font-size:13.5px;display:grid;place-items:center}
+.uname{font-size:13.5px;font-weight:700;color:#fff;white-space:nowrap}
+.lo{border:2px solid rgba(255,255,255,.55);background:transparent;border-radius:0;padding:6px 13px;font-size:13px;font-weight:700;cursor:pointer;color:#fff}
+.lo:hover{border-color:#fff;background:rgba(255,255,255,.12)}
+
+/* ---------- layout ---------- */
+.wrap{max-width:1180px;margin:0 auto;padding:20px;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:18px;align-items:start}
+.pane{background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--navy)}
+.pane.results{border-top-color:var(--saffron)}
+.chatpane{display:flex;flex-direction:column;height:calc(100vh - 98px);min-height:480px}
+.panehead{padding:13px 18px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px}
+.panehead b{color:var(--ink);font-size:15px;letter-spacing:.1px}
+.panehead .live{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--green);background:var(--green-bg);border:1px solid #b5d9bd;border-radius:0;padding:3px 9px}
+.pdot{width:7px;height:7px;background:#22c55e;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+/* chat area — block flow: children can never be flex-squashed */
+#chat{flex:1;min-height:0;overflow-y:auto;padding:18px;background:linear-gradient(180deg,#fbfcfe,#f7f9fc)}
+.mrow{display:flex;gap:10px;align-items:flex-end;max-width:92%;margin-bottom:12px}
+.mrow.me{flex-direction:row-reverse;margin-left:auto}
+.avatar{width:28px;height:28px;flex:0 0 auto;display:grid;place-items:center;font-size:12.5px;font-weight:800}
+.avatar.bot{background:var(--navy);color:#fff}
+.avatar.me{background:#374151;color:#fff}
+.bubble{padding:10px 14px;border-radius:0;font-size:14.5px;line-height:1.5;max-width:100%;overflow-wrap:break-word}
+.mrow.bot .bubble{background:#fff;border:1px solid var(--line);border-left:3px solid var(--navy);color:var(--ink)}
+.mrow.me .bubble{background:var(--navy);color:#fff}
+.typing .bubble{display:flex;gap:5px;align-items:center;padding:14px 16px}
+.tdot{width:7px;height:7px;background:#8fa6c6;animation:blink 1.2s infinite}
+.tdot:nth-child(2){animation-delay:.18s}.tdot:nth-child(3){animation-delay:.36s}
+@keyframes blink{0%,70%,100%{opacity:.3}35%{opacity:1}}
+
+/* options + input */
+.optzone{padding:0 18px}
+#opts{display:flex;flex-wrap:wrap;gap:8px}
+#opts:empty{display:none}
+#opts button{border:2px solid var(--navy);background:#fff;color:var(--navy);padding:8px 15px;border-radius:0;font-size:13.5px;font-weight:700;cursor:pointer}
+#opts button:hover{background:var(--navy);color:#fff}
+#row{display:flex;gap:10px;padding:14px 18px;border-top:1px solid var(--line);background:#fff}
+#inp{flex:1;padding:12px 14px;border:2px solid #6b7280;border-radius:0;font-size:14.5px;color:var(--ink)}
+#inp:focus{outline:3px solid #ffdd00;border-color:var(--navy)}
+#sendBtn{width:46px;height:46px;flex:0 0 auto;border:0;border-radius:0;background:var(--navy);color:#fff;cursor:pointer;display:grid;place-items:center;box-shadow:0 3px 0 var(--navy-d)}
+#sendBtn:hover{background:#163d76}
+#sendBtn:active{transform:translateY(2px);box-shadow:0 1px 0 var(--navy-d)}
+#sendBtn:disabled{opacity:.6;cursor:wait;transform:none}
+.hint{font-size:11.5px;color:var(--mut);padding:0 18px 13px;background:#fff}
+
+/* results pane */
+.respane{display:flex;flex-direction:column;max-height:calc(100vh - 98px);min-height:480px}
+.respane .panehead{justify-content:space-between}
+/* block flow again: no flex children to squash */
+#res{flex:1;min-height:0;overflow-y:auto;padding:16px;background:#fff}
+.empty{margin:14px 6px;border:1px solid var(--line);background:var(--bg);padding:34px 20px;text-align:center;color:var(--mut)}
+.empty b{display:block;color:var(--ink);font-size:15px;margin-bottom:4px}
+.empty span{font-size:13px}
+
+.pgroup{font-size:11px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--mut);margin:18px 0 0;padding-bottom:5px;border-bottom:1px solid var(--line)}
+.pgroup:first-child{margin-top:0}
+.pchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.pchip{font-size:12px;background:#fff;border:1px solid var(--line);padding:3px 10px;color:var(--body)}
+.pchip b{color:var(--ink)}
+
+/* print button + print-only header */
+.printhdr{display:none}
+.prt{border:2px solid var(--navy);background:#fff;color:var(--navy);padding:5px 12px;font-size:12px;font-weight:700;cursor:pointer;display:none}
+.prt:hover{background:var(--navy);color:#fff}
+@media print{
+  body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .top,.chatpane,.optzone,#row,.hint,.prt,#resCount{display:none !important}
+  body{background:#fff}
+  .wrap{display:block;max-width:none;padding:0}
+  .pane{border:0}
+  .respane{max-height:none;min-height:0}
+  #res{overflow:visible;max-height:none;padding:0}
+  .printhdr{display:block;border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:14px}
+  .printhdr b{display:block;color:var(--ink);font-size:18px}
+  .printhdr span{font-size:12px;color:#333}
+  .card{break-inside:avoid;page-break-inside:avoid}
+  a{color:var(--navy)}
+}
+
+.card{border:1px solid var(--line);border-left:4px solid var(--line);background:#fff;margin-top:10px}
+.card.elig{border-left-color:var(--green)}
+.card.near{border-left-color:var(--amber)}
+.card.poss{border-left-color:var(--blue)}
+.chead{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding:11px 13px 3px}
+.chead b{color:var(--ink);font-size:14.5px;line-height:1.35}
+.tag{flex:0 0 auto;font-size:10px;font-weight:800;letter-spacing:.8px;border-radius:0;padding:3px 8px;color:#fff}
+.tag.g{background:var(--green)}.tag.a{background:var(--amber)}.tag.b{background:var(--blue)}
+.dl{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;border-radius:8px;padding:4px 10px;margin:6px 0}
+.dl.urgent{background:#fee2e2;color:#991b1b}.dl.soon{background:#fef3c7;color:#92400e}.dl.open{background:#dcfce7;color:#166534}
+.dl.upcoming{background:#e0e7ff;color:#3730a3}.dl.closed{background:#f1f5f9;color:#475569}
+.dl small{font-weight:400}
+.fixbtn{display:inline-block;margin:6px 6px 0 0;padding:7px 12px;border-radius:9px;border:1.5px solid var(--green);background:#f0fdf4;color:#166534;font-weight:700;font-size:12.5px;cursor:pointer}
+.fixrow{margin:6px 0;font-size:12.5px;color:var(--body)}
+.fixopt{margin:3px 4px 0 0;padding:5px 11px;border-radius:14px;border:1px solid var(--amber);background:#fffbeb;font-size:12px;cursor:pointer}
+.transbanner{background:#f0fdf4;border:1.5px solid var(--green);border-radius:10px;padding:10px 13px;margin:10px 0;font-size:13.5px}
+.cmpbtn{margin-top:8px;padding:5px 11px;border-radius:8px;border:1px solid var(--line);background:#fff;font-size:12px;cursor:pointer;color:var(--body)}
+.cmpbtn.on{border-color:var(--blue);background:#eff6ff;color:var(--blue);font-weight:700}
+#cmptray{display:none;align-items:center;gap:8px;background:#eff6ff;border:1px solid var(--blue);border-radius:10px;padding:8px 12px;margin:8px 0;font-size:13px}
+#cmpview{margin:8px 0}
+.cmpwrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+table.cmp{border-collapse:collapse;width:100%;min-width:520px;font-size:12.5px}
+table.cmp th,table.cmp td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+table.cmp th{background:#f8fafc}table.cmp td.dim{background:#f8fafc;font-weight:700;white-space:nowrap}
+.st-ok{color:var(--green);font-weight:700}.st-warn{color:var(--amber);font-weight:700}.st-bad{color:#b91c1c;font-weight:700}.st-info{color:var(--blue)}
+.req{display:inline-block;margin:1px 3px 1px 0;padding:1px 7px;border-radius:9px;background:var(--bg);border:1px solid var(--line);font-size:11.5px}
+.callouts{background:#fffbeb;border:1px solid var(--amber);border-radius:10px;padding:8px 12px;margin:0 0 8px;font-size:12.5px}
+.cbody{padding:3px 13px 12px;font-size:13.5px}
+.benefit{font-weight:700;color:var(--ink);margin:4px 0}
+.exp{margin:6px 0;color:var(--body)}
+.docs{display:flex;flex-wrap:wrap;gap:5px;margin:8px 0}
+.doc{font-size:11.5px;background:var(--bg);border:1px solid var(--line);padding:2px 8px;color:var(--body)}
+.meta{font-size:12px;color:var(--mut);margin-top:8px;line-height:1.6}
+.meta a{font-weight:600}
+.gap{background:var(--amber-bg);border:1px solid #ecd9b0;border-left:3px solid var(--amber);padding:8px 10px;margin:7px 0;font-size:12.5px}
+.gap b{color:#7c3a0d}
+.fix{color:#14532d;background:var(--green-bg);border:1px solid #c4e0ca;border-left:3px solid var(--green);padding:8px 10px;margin:7px 0;font-size:12.5px}
+.fix b{color:var(--green)}
+.misschips{display:flex;flex-wrap:wrap;gap:5px;margin:7px 0}
+.misschip{font-size:11.5px;background:var(--blue-bg);border:1px solid #c4d7f2;color:var(--blue);padding:2px 8px}
+.warn{background:#fdf6ec;border:1px solid #ecd9b0;border-left:3px solid #d97706;padding:8px 10px;margin:8px 0 0;font-size:12.5px;color:#7c3a0d}
+.rr{font-size:12px;color:var(--mut);margin-top:7px;font-style:italic}
+.langsw{display:inline-flex;background:var(--bg);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.langsw button{border:0;background:transparent;padding:5px 9px;font-size:11.5px;font-weight:700;cursor:pointer;color:var(--mut)}
+.langsw button.on{background:var(--navy);color:#fff}
+.disc{font-size:11.5px;color:var(--mut);text-align:center;border-top:1px solid var(--line);margin-top:16px;padding:12px 6px 2px;line-height:1.5}
+
+@media(max-width:920px){
+  .wrap{grid-template-columns:1fr}
+  .chatpane,.respane{height:auto;max-height:none;min-height:0}
+  #chat{max-height:56vh}
+  #res{max-height:none}
+  .uname{display:none}
+  .prog{min-width:70px}
+}
+@media(max-width:560px){
+  .top .inner{gap:10px;padding:11px 12px}
+  .wrap{padding:12px}
+  .brand span.txt{display:none}
+  .mrow{max-width:100%}
+}
+</style>
+</head>
+<body>
+
+<div class="printhdr"><b>SchemeSetu — Your scheme results</b><span>Printed <span id="prtDate"></span> · guidance only — the scheme authority decides final eligibility.</span></div>
+
+<header class="top">
+  <div class="inner">
+    <a class="brand" href="/"><span class="mark">S</span><span class="txt">SchemeSetu</span></a>
+    <div class="prog">
+      <div class="ptext" id="ptext">Starting…</div>
+      <div class="ptrack"><div id="pbar"></div></div>
+    </div>
+    <div class="user">
+      <span class="langsw" id="langsw"><button data-l="en" class="on">EN</button><button data-l="hi">हिंदी</button><button data-l="kn">ಕನ್ನಡ</button></span>
+      <span class="uav" id="uav">?</span><span class="uname" id="uname"></span>
+      <button class="lo" onclick="logout()">Log out</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="pane chatpane">
+    <div class="panehead"><b>Scheme Assistant</b><span class="live"><span class="pdot"></span>Live</span></div>
+    <div id="chat"></div>
+    <div class="optzone"><div id="opts"></div></div>
+    <div id="row">
+      <input id="inp" placeholder="Type your answer…" autocomplete="off"/>
+      <button id="sendBtn" onclick="send()" aria-label="Send">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4 20-7z"/></svg>
+      </button>
+    </div>
+    <div class="hint">Tip: answer in your own words — or type <b>skip</b> on anything you'd rather not share.</div>
+  </section>
+
+  <aside class="pane results respane">
+    <div class="panehead"><b>Your results</b><span style="display:flex;align-items:center;gap:8px"><span class="live" id="resCount" style="display:none"><span class="pdot"></span><span id="resCountTxt"></span></span><button class="prt" id="histBtn" onclick="toggleHist()">History</button><button class="prt" id="prtBtn" onclick="window.print()">Print</button></span></div>
+    <div id="histList" style="display:none"></div>
+    <div id="cmptray" style="display:none"><span id="cmpcount"></span><button class="prt" onclick="showCompare()">Compare →</button><button class="prt" onclick="cmpClear()">Clear</button></div>
+    <div id="cmpview" style="display:none"></div>
+    <div id="res">
+      <div class="empty">
+        <b id="emptyT">Results appear here</b>
+        <span id="emptyS">Answer the questions on the left — your ranked schemes build up live.</span>
+      </div>
+    </div>
+  </aside>
+</main>
+
+<script>
+const TOKEN=localStorage.getItem('ss_token');
+if(!TOKEN) location.href='/login';
+const NAME=localStorage.getItem('ss_name')||'there';
+document.getElementById('uname').textContent=NAME;
+document.getElementById('uav').textContent=(NAME.trim()[0]||'?').toUpperCase();
+
+function logout(){fetch('/auth/logout',{method:'POST',headers:{'Authorization':'Bearer '+TOKEN}}).finally(()=>{localStorage.removeItem('ss_token');localStorage.removeItem('ss_name');location.href='/';});}
+async function api(path,opts={}){opts.headers=Object.assign({'Authorization':'Bearer '+TOKEN},opts.headers||{});const r=await fetch(path,opts);if(r.status===401){logout();throw new Error('session expired');}return r;}
+
+let SID=null,FIELD=null,busy=false;
+let LANG=localStorage.getItem('ss_lang')||'en';
+if(!['en','hi','kn'].includes(LANG))LANG='en';
+const LANGD={
+en:{now_elig:'🎉 {n} is now Eligible!',noted_same:'Noted — no scheme changed status.',upd_fail:'Update failed.'},
+hi:{tip:'Tip: अपने शब्दों में जवाब दें — या न बताना हो तो <b>छोड़ें</b> लिखें।',results:'आपके परिणाम',
+your_answers:'आपके जवाब',elig:'आपके लिए योग्य',almost:'लगभग योग्य',needinfo:'थोड़ी और जानकारी चाहिए',
+none_yet:'अभी कोई नहीं — नीचे near-miss देखें।',no_near:'कोई near-miss नहीं।',nothing:'कुछ बाकी नहीं।',
+why_rank:'यहाँ क्यों:',apply:'आवेदन:',source:'आधिकारिक स्रोत',verified:'जाँच',empty_t:'परिणाम यहाँ दिखेंगे',
+empty_s:'बाईं ओर सवालों के जवाब दें — आपकी योजनाएँ बनती जाएँगी।',compare:'तुलना',clear:'साफ़ करें',
+close_cmp:'तुलना बंद करें',selected:'चुने गए',send_ph:'अपना जवाब लिखें…',need2:'पहले कम से कम 2 योजनाएँ चुनें (कार्ड पर ＋ तुलना)।',
+max3:'एक बार में ज़्यादा से ज़्यादा 3 योजनाएँ — पहले कोई हटाएँ।',neterr:'नेटवर्क त्रुटि — क्या सर्वर चल रहा है?',
+nosess:'सत्र शुरू नहीं हुआ। फिर से लॉग इन करें।',done:'हो गया ✓',starting:'शुरू हो रहा…',
+logout:'Log out',docs:'दस्तावेज़',now_elig:'🎉 {n} अब योग्य!',noted_same:'नोट किया — कोई योजना नहीं बदली।',
+upd_fail:'अपडेट विफल।',compare:'तुलना'},
+kn:{tip:'Tip: ನಿಮ್ಮ ಸ್ವಂತ ಮಾತುಗಳಲ್ಲಿ ಉತ್ತರಿಸಿ — ಹಂಚಿಕೊಳ್ಳಲು ಇಷ್ಟವಿಲ್ಲದಿದ್ದರೆ <b>ಬಿಟ್ಟುಬಿಡಿ</b> ಎಂದು ಬರೆಯಿರಿ।',results:'ನಿಮ್ಮ ಫಲಿತಾಂಶಗಳು',
+your_answers:'ನಿಮ್ಮ ಉತ್ತರಗಳು',elig:'ನಿಮಗೆ ಅರ್ಹ',almost:'ಬಹುತೇಕ ಅರ್ಹ',needinfo:'ಸ್ವಲ್ಪ ಹೆಚ್ಚಿನ ಮಾಹಿತಿ ಬೇಕು',
+none_yet:'ಇನ್ನೂ ಯಾವುದೂ ಇಲ್ಲ — ಕೆಳಗಿನ near-miss ನೋಡಿ.',no_near:'ಯಾವುದೇ near-miss ಇಲ್ಲ.',nothing:'ಏನೂ ಬಾಕಿ ಇಲ್ಲ.',
+why_rank:'ಇಲ್ಲಿ ಏಕೆ:',apply:'ಅರ್ಜಿ:',source:'ಅಧಿಕೃತ ಮೂಲ',verified:'ಪರಿಶೀಲನೆ',empty_t:'ಫಲಿತಾಂಶಗಳು ಇಲ್ಲಿ ಕಾಣುತ್ತವೆ',
+empty_s:'ಎಡಭಾಗದ ಪ್ರಶ್ನೆಗಳಿಗೆ ಉತ್ತರಿಸಿ — ನಿಮ್ಮ ಯೋಜನೆಗಳು ನಿರ್ಮಾಣವಾಗುತ್ತವೆ.',compare:'ಹೋಲಿಕೆ',clear:'ತೆರವುಗೊಳಿಸಿ',
+close_cmp:'ಹೋಲಿಕೆ ಮುಚ್ಚಿ',selected:'ಆಯ್ಕೆಯಾಗಿದೆ',send_ph:'ನಿಮ್ಮ ಉತ್ತರ ಬರೆಯಿರಿ…',need2:'ಮೊದಲು ಕನಿಷ್ಠ 2 ಯೋಜನೆಗಳನ್ನು ಆರಿಸಿ (ಕಾರ್ಡ್ ಮೇಲೆ ＋ ಹೋಲಿಕೆ).',
+max3:'ಒಮ್ಮೆಗೆ ಗರಿಷ್ಠ 3 ಯೋಜನೆಗಳು — ಮೊದಲು ಒಂದನ್ನು ತೆಗೆದುಹಾಕಿ.',neterr:'ಜಾಲಬಂಧ ದೋಷ — ಸರ್ವರ್ ಚಾಲ್ತಿಯಲ್ಲಿದೆಯೇ?',
+nosess:'ಅಧಿವೇಶನ ಆರಂಭವಾಗಲಿಲ್ಲ. ಮತ್ತೆ ಲಾಗಿನ್ ಮಾಡಿ.',done:'ಮುಗಿದಿದೆ ✓',starting:'ಆರಂಭವಾಗುತ್ತಿದೆ…',
+logout:'Log out',docs:'ದಾಖಲೆಗಳು',now_elig:'🎉 {n} ಈಗ ಅರ್ಹ!',noted_same:'ಗಮನಿಸಲಾಗಿದೆ — ಯಾವುದೇ ಬದಲಾವಣೆ ಇಲ್ಲ.',
+upd_fail:'ಅಪ್ಡೇಟ್ ವಿಫಲವಾಗಿದೆ.',compare:'ಹೋಲಿಕೆ'}};
+const T=k=>(LANGD[LANG]&&LANGD[LANG][k])||k;
+function setLang(l){
+  if(!['en','hi','kn'].includes(l))return;
+  LANG=l;localStorage.setItem('ss_lang',l);
+  document.querySelectorAll('#langsw button').forEach(b=>b.classList.toggle('on',b.dataset.l===l));
+  CMP.clear();syncTray();document.getElementById('cmpview').style.display='none';
+  chat.innerHTML='';res.innerHTML='';inp.value='';inp.placeholder=T('send_ph');
+  document.querySelector('.hint').innerHTML=T('tip');
+  document.querySelector('.respane .panehead b').textContent=T('results');
+  init();
+}
+document.querySelectorAll('#langsw button').forEach(b=>b.onclick=()=>setLang(b.dataset.l));
+document.querySelectorAll('#langsw button').forEach(b=>b.classList.toggle('on',b.dataset.l===LANG));
+inp_placeholder_init();
+function inp_placeholder_init(){
+  const i=document.getElementById('inp');if(i)i.placeholder=T('send_ph');
+  const h=document.querySelector('.hint');if(h&&LANG!=='en')h.innerHTML=T('tip');
+  const r=document.querySelector('.respane .panehead b');if(r&&LANG!=='en')r.textContent=T('results');
+  const et=document.getElementById('emptyT');if(et&&LANG!=='en')et.textContent=T('empty_t');
+  const es=document.getElementById('emptyS');if(es&&LANG!=='en')es.textContent=T('empty_s');
+}
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const dlBadge=d=>!d?'':`<div class="dl ${esc(d.tier)}">⏳ ${esc(d.label)}${d.note?` <small>(${esc(d.note)})</small>`:''}</div>`;
+let ACTIONS={};
+function focusUpdate(field){
+  const fl=(LB()[field]||field).replace(/_/g,' ');
+  inp.placeholder=LANG==='hi'?`अपडेट लिखें, जैसे “मेरा ${fl} …” है`
+    :LANG==='kn'?`ಅಪ್ಡೇಟ್ ಬರೆಯಿರಿ, ಉದಾ. “ನನ್ನ ${fl} …”`
+    :`Type your update, e.g. “my ${fl} is …”`;
+  inp.focus();
+}
+async function doPatch(field,value){
+  typing(true);
+  try{
+    const r=await api(`/sessions/${SID}/profile`,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({field,value})});
+    const j=await r.json();typing(false);
+    if(!r.ok){add('bot',j.detail||T('upd_fail'));return;}
+    const tr=j.transitions||[];
+    add('bot',tr.length?tr.map(t=>t.new==='eligible'?T('now_elig').replace('{n}',t.scheme_name):`${t.scheme_name}: ${t.old} → ${t.new}`).join(' '):T('noted_same'));
+    if(j.results)render(j.results,tr);
+  }catch(e){typing(false);add('bot',T('neterr'));}
+}
+function runAction(schemeId,ai,oi){
+  const a=(ACTIONS[schemeId]||[])[ai];if(!a)return;
+  const v=a.hasOwnProperty('value')?a.value:(oi!==undefined&&a.options?a.options[oi]:undefined);
+  if(v===undefined){focusUpdate(a.field);return;}
+  doPatch(a.field,v);
+}
+/* ---------- side-by-side compare (2–3 schemes) ---------- */
+let CMP=new Set();
+function toggleCmp(id){
+  if(CMP.has(id))CMP.delete(id);
+  else if(CMP.size>=3)add('bot',T('max3'));
+  else CMP.add(id);
+  syncTray();syncCmpBtns();
+}
+function cmpClear(){CMP.clear();syncTray();syncCmpBtns();document.getElementById('cmpview').style.display='none';}
+function syncTray(){
+  const t=document.getElementById('cmptray');if(!t)return;
+  t.style.display=CMP.size?'flex':'none';
+  document.getElementById('cmpcount').textContent=`${CMP.size} ${T('selected')}`;
+  const go=t.querySelector('button');if(go)go.textContent=T('compare')+' →';
+  const cl=t.querySelectorAll('button')[1];if(cl)cl.textContent=T('clear');
+}
+function syncCmpBtns(){
+  document.querySelectorAll('[data-cmp]').forEach(b=>{
+    const on=CMP.has(b.dataset.cmp);b.classList.toggle('on',on);
+    b.textContent=(on?'✓ ':'＋ ')+T('compare');
+  });
+}
+async function showCompare(){
+  if(CMP.size<2){add('bot',T('need2'));return;}
+  try{
+    const r=await api(`/sessions/${SID}/compare?ids=${[...CMP].map(encodeURIComponent).join(',')}`);
+    const j=await r.json();
+    if(!r.ok){add('bot',j.detail||'Compare failed.');return;}
+    renderCmp(j);
+  }catch(e){add('bot',T('neterr'));}
+}
+function stClass(k){return k==='eligible'?'st-ok':k==='near_miss'?'st-warn':k==='not_eligible'?'st-bad':'st-info';}
+function cmpCell(key,c){
+  if(key==='status')return `<span class="${stClass(c.status_key)}">${esc(c.status)}</span>`;
+  if(key==='benefit')return `${esc(c.benefit)}<br><b>${esc(c.benefit_fmt)}</b>`;
+  if(key==='deadline')return esc(c.deadline);
+  if(key==='documents')return `<b>${c.documents.length}</b> ${esc(T('docs'))}<br>`+c.documents.map(d=>esc(d)).join('<br>');
+  if(key==='effort')return `${esc(c.effort)}<br><span style="color:var(--mut)">${esc(c.channel)}</span>`;
+  if(key==='requirements')return c.requirements.map(q=>`<span class="req">${esc(q.mark)} ${esc(q.label)}</span>`).join('');
+  if(key==='channel')return esc(c.channel);
+  if(key==='source')return `<a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(T('source'))} ↗</a><br>${esc(T('verified'))} ${esc(c.last_verified)}`;
+  return '';
+}
+function renderCmp(j){
+  const nm={};j.columns.forEach(c=>nm[c.id]=c.name);
+  const co=j.callouts||{};
+  const chl=LANG==='hi'?'सबसे बड़ा लाभ':LANG==='kn'?'ಅತ್ಯಧಿಕ ಪ್ರಯೋಜನ':'Highest benefit';
+  const cfl=LANG==='hi'?'सबसे कम दस्तावेज़':LANG==='kn'?'ಕನಿಷ್ಠ ದಾಖಲೆಗಳು':'Fewest documents';
+  const cel=LANG==='hi'?'सबसे आसान आवेदन':LANG==='kn'?'ಅತ್ಯಂತ ಸುಲಭ ಅರ್ಜಿ':'Easiest to apply';
+  const call=`<div class="callouts">⭐ ${chl}: <b>${esc(nm[co.highest_benefit]||'—')}</b> · 🧾 ${cfl}: <b>${esc(nm[co.fewest_documents]||'—')}</b> · 🪶 ${cel}: <b>${esc(nm[co.easiest_apply]||'—')}</b></div>`;
+  let h=`<div class="cmpwrap"><table class="cmp"><tr><th></th>`+
+    j.columns.map(c=>`<th>${esc(c.name)}</th>`).join('')+`</tr>`;
+  j.rows.forEach(rw=>{h+=`<tr><td class="dim">${esc(rw.label)}</td>`+
+    j.columns.map(c=>`<td>${cmpCell(rw.key,c)}</td>`).join('')+`</tr>`;});
+  h+=`</table></div><div class="meta">${esc(j.disclaimer||'')}</div>
+      <button class="cmpbtn" onclick="document.getElementById('cmpview').style.display='none'">${esc(T('close_cmp'))}</button>`;
+  const v=document.getElementById('cmpview');v.innerHTML=call+h;v.style.display='block';
+  v.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function actionBtns(n){
+  ACTIONS[n.id]=n.actions||[];
+  return (n.actions||[]).map((a,ai)=>{
+    if(a.hasOwnProperty('value'))return `<button class="fixbtn" onclick="runAction('${esc(n.id)}',${ai})">🔧 ${esc(a.label)}</button>`;
+    if(a.options)return `<div class="fixrow"><span>🔧 ${esc(a.label)}:</span><br>`+a.options.map((o,oi)=>`<button class="fixopt" onclick="runAction('${esc(n.id)}',${ai},${oi})">${esc(o)}</button>`).join('')+`</div>`;
+    return `<button class="fixbtn" onclick="focusUpdate('${esc(a.field)}')">✏️ ${esc(a.label)}</button>`;
+  }).join('');
+}
+const chat=document.getElementById('chat'),opts=document.getElementById('opts'),inp=document.getElementById('inp'),
+      res=document.getElementById('res'),pbar=document.getElementById('pbar'),ptext=document.getElementById('ptext'),
+      sendBtn=document.getElementById('sendBtn');
+
+function add(who,t){
+  const row=document.createElement('div');row.className='mrow '+who;
+  const av=document.createElement('div');av.className='avatar '+who;
+  av.textContent=who==='bot'?'S':(NAME.trim()[0]||'You').toUpperCase();
+  const b=document.createElement('div');b.className='bubble';b.textContent=t;
+  row.appendChild(av);row.appendChild(b);chat.appendChild(row);
+  chat.scrollTop=chat.scrollHeight;return row;
+}
+let typingRow=null;
+function typing(on){
+  if(on&&!typingRow){
+    typingRow=document.createElement('div');typingRow.className='mrow bot typing';
+    typingRow.innerHTML='<div class="avatar bot">S</div><div class="bubble"><span class="tdot"></span><span class="tdot"></span><span class="tdot"></span></div>';
+    chat.appendChild(typingRow);chat.scrollTop=chat.scrollHeight;
+  }else if(!on&&typingRow){typingRow.remove();typingRow=null;}
+}
+function setProgress(t){
+  const m=/(\d+)[^\d]+(\d+)/.exec(t||'');
+  if(m){const p=Math.round((+m[1]/+m[2])*100);pbar.style.width=p+'%';ptext.textContent=t;}
+  else{ptext.textContent=t||'';}
+}
+function chips(labels,values){
+  opts.innerHTML='';
+  const vals=values||labels||[];
+  (labels||[]).forEach((o,i)=>{const b=document.createElement('button');b.textContent=o;b.onclick=()=>{if(!busy){inp.value=vals[i];send();}};opts.appendChild(b);});
+}
+function ask(j){
+  setProgress(j.progress||ptext.textContent);
+  if(j.question)add('bot',j.question);
+  FIELD=j.field||null;
+  chips(j.option_labels||j.options,j.options);
+}
+
+async function init(){
+  try{
+    const r=await api('/sessions?lang='+LANG,{method:'POST'});const j=await r.json();
+    SID=j.session_id;
+    add('bot',j.message);
+    ask(j);
+  }catch(e){add('bot',T('nosess'));}
+}
+
+async function send(){
+  if(busy)return;
+  const t=inp.value.trim();if(!t)return;
+  busy=true;sendBtn.disabled=true;inp.value='';chips([]);
+  add('me',t);typing(true);
+  try{
+    const r=await api(`/sessions/${SID}/messages`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:t})});
+    const j=await r.json();
+    typing(false);
+    add('bot',j.reply);
+    if(j.done){
+      pbar.style.width='100%';ptext.textContent=T('done');
+      if(j.results)render(j.results,j.transitions);
+    }else if(j.question){ask(j);}
+    else{if(j.progress)setProgress(j.progress);FIELD=j.field||null;chips(j.option_labels||j.options,j.options);}
+  }catch(e){typing(false);add('bot',T('neterr'));}
+  finally{busy=false;sendBtn.disabled=false;}
+}
+
+/* ---------- results ---------- */
+const LABELS={age:'Age',state:'State',gender:'Gender',social_category:'Category',occupation_stage:'You are',
+  education_level:'Education',sector:'Sector',income_band:'Household income',funding_need:'Funding need',
+  business_registered:'Business registered',first_time_borrower:'First-time borrower'};
+const LABELS_HI={age:'उम्र',state:'राज्य',gender:'लिंग',social_category:'श्रेणी',occupation_stage:'पहचान',
+  education_level:'शिक्षा',sector:'क्षेत्र',income_band:'आय',funding_need:'रकम',
+  business_registered:'पंजीकरण',first_time_borrower:'पहला ऋण'};
+const LABELS_KN={age:'ವಯಸ್ಸು',state:'ರಾಜ್ಯ',gender:'ಲಿಂಗ',social_category:'ವರ್ಗ',occupation_stage:'ಗುರುತು',
+  education_level:'ಶಿಕ್ಷಣ',sector:'ಕ್ಷೇತ್ರ',income_band:'ಆದಾಯ',funding_need:'ಮೊತ್ತ',
+  business_registered:'ನೋಂದಣಿ',first_time_borrower:'ಮೊದಲ ಸಾಲ'};
+const LB=()=>LANG==='hi'?LABELS_HI:LANG==='kn'?LABELS_KN:LABELS;
+const fmt=v=>v===true?(LANG==='hi'?'हाँ':LANG==='kn'?'ಹೌದು':'Yes'):v===false?(LANG==='hi'?'नहीं':LANG==='kn'?'ಇಲ್ಲ':'No'):String(v);
+const LABEL_WORDS={age:'Age',state:'State',gender:'Gender',social_category:'Social category',occupation_stage:'Stage',
+  education_level:'Education',sector:'Sector',income_band:'Income band',funding_need:'Funding need',
+  business_registered:'Business registration',first_time_borrower:'First-time borrower'};
+
+function render(r,tr){
+  let h='';
+  if(tr&&tr.length)h+=`<div class="transbanner">`+tr.map(t=>t.new==='eligible'?T('now_elig').replace('{n}',`<b>${esc(t.scheme_name)}</b>`):`${esc(t.scheme_name)}: ${esc(t.old)} → ${esc(t.new)}`).join('<br>')+`</div>`;
+  const prof=r.profile||{};
+  const chipsHtml=Object.keys(LB()).filter(k=>prof[k]!==undefined&&prof[k]!==null)
+    .map(k=>`<span class="pchip">${esc(LB()[k])}: <b>${esc(fmt(prof[k]))}</b></span>`).join('');
+  if(chipsHtml)h+=`<div class="pgroup">${esc(T('your_answers'))}</div><div class="pchips">${chipsHtml}</div>`;
+
+  h+=`<div class="pgroup" style="color:var(--green)">${esc(T('elig'))}</div>`;
+  if(!r.eligible.length)h+=`<div class="card"><div class="cbody">${esc(T('none_yet'))}</div></div>`;
+  r.eligible.forEach(e=>{
+    const pct=(typeof e.score==='number')?(e.score<=1?Math.round(e.score*100):Math.round(e.score))+'% match':'';
+    h+=`<div class="card elig">
+      <div class="chead"><b>${esc(e.name)}</b>${pct?`<span class="tag g">${esc(pct)}</span>`:''}</div>
+      <div class="cbody">
+        <div class="benefit">${esc(e.benefit)}</div>
+        ${dlBadge(e.deadline)}
+        <div class="exp">${esc(e.explanation)}</div>
+        ${(e.documents||[]).length?`<div class="docs">${e.documents.map(d=>`<span class="doc">${esc(d)}</span>`).join('')}</div>`:''}
+        ${e.channel?`<div class="meta"><b>${esc(T('apply'))}</b> ${esc(e.channel)}</div>`:''}
+        <div class="meta"><a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(T('source'))} ↗</a> · ${esc(T('verified'))} ${esc(e.last_verified)}</div>
+        ${e.rank_reason?`<div class="rr">${esc(T('why_rank'))} ${esc(e.rank_reason)}</div>`:''}
+        ${e.stale_warning?`<div class="warn">${esc(e.stale_warning)}</div>`:''}
+        <button class="cmpbtn" data-cmp="${esc(e.id)}" onclick="toggleCmp('${esc(e.id)}')">＋ ${esc(T('compare'))}</button>
+      </div></div>`;
+  });
+
+  h+=`<div class="pgroup" style="color:var(--amber)">${esc(T('almost'))}</div>`;
+  if(!r.near_miss.length)h+=`<div class="card"><div class="cbody">${esc(T('no_near'))}</div></div>`;
+  r.near_miss.forEach(n=>{
+    const gaps=(n.failed||[]).map(f=>`<div class="gap"><b>${esc(f.label||f.field)}:</b> ${esc(f.gap||'')}${f.fix?`<div class="fix" style="margin:6px 0 0"><b>Fix:</b> ${esc(f.fix)}</div>`:''}</div>`).join('');
+    h+=`<div class="card near">
+      <div class="chead"><b>${esc(n.name)}</b><span class="tag a">ALMOST</span></div>
+      <div class="cbody">
+        <div class="benefit">${esc(n.benefit)}</div>
+        ${dlBadge(n.deadline)}
+        ${gaps}
+        ${actionBtns(n)}
+        <div class="exp">${esc(n.guidance)}</div>
+        <div class="meta"><a href="${esc(n.url)}" target="_blank" rel="noopener">${esc(T('source'))} ↗</a> · ${esc(T('verified'))} ${esc(n.last_verified)}</div>
+        ${n.stale_warning?`<div class="warn">${esc(n.stale_warning)}</div>`:''}
+        <button class="cmpbtn" data-cmp="${esc(n.id)}" onclick="toggleCmp('${esc(n.id)}')">＋ ${esc(T('compare'))}</button>
+      </div></div>`;
+  });
+
+  h+=`<div class="pgroup" style="color:var(--blue)">${esc(T('needinfo'))}</div>`;
+  if(!r.possibly_eligible.length)h+=`<div class="card"><div class="cbody">${esc(T('nothing'))}</div></div>`;
+  r.possibly_eligible.forEach(p=>{
+    const miss=(p.missing_fields||[]).map(m=>`<span class="misschip">${esc(LB()[m]||m)}</span>`).join('');
+    h+=`<div class="card poss">
+      <div class="chead"><b>${esc(p.name)}</b><span class="tag b">NEEDS INFO</span></div>
+      <div class="cbody">
+        <div class="benefit">${esc(p.benefit)}</div>
+        ${miss?`<div class="misschips">${miss}</div>`:''}
+        <div class="meta"><a href="${esc(p.url)}" target="_blank" rel="noopener">${esc(T('source'))} ↗</a> · ${esc(T('verified'))} ${esc(p.last_verified)}</div>
+      </div></div>`;
+  });
+
+  h+=`<div class="disc">${esc(r.disclaimer||'')}</div>`;
+  res.innerHTML=h;res.scrollTop=0;syncCmpBtns();
+  const n=r.eligible.length;
+  const rc=document.getElementById('resCount'),rt=document.getElementById('resCountTxt');
+  rc.style.display='inline-flex';rt.textContent=n+' '+(LANG==='hi'?'योग्य':LANG==='kn'?'ಅರ್ಹ':'eligible');
+  document.getElementById('prtBtn').style.display='inline-block';
+}
+
+window.addEventListener('beforeprint',()=>{
+  document.getElementById('prtDate').textContent=new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});
+  document.title='SchemeSetu — your results';
+});
+window.addEventListener('afterprint',()=>{document.title='Assistant — SchemeSetu';});
+
+inp.addEventListener('keydown',e=>{if(e.key==='Enter')send();});
+init();
+</script>
+</body>
+</html>

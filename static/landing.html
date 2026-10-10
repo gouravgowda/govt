@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SchemeSetu — Check which government schemes you qualify for</title>
+<style>
+:root{
+  --navy:#0f2f5c; --navy-d:#0a2344; --ink:#111827; --body:#1f2937; --mut:#5b6472;
+  --line:#d5dae1; --bg:#f4f5f7; --paper:#fff; --saffron:#e8862d;
+  --green:#1a7f37; --green-bg:#eff7f0; --amber:#b45309; --amber-bg:#fdf6ec;
+}
+*{box-sizing:border-box}
+:root{color-scheme:light}
+body{font-family:system-ui,'Segoe UI',Roboto,Arial,sans-serif;margin:0;background:var(--paper);color:var(--body);line-height:1.55}
+a{color:var(--navy);text-decoration:underline;text-underline-offset:2px}
+a:hover{color:var(--navy-d)}
+h1,h2,h3{color:var(--ink);line-height:1.15;margin:0}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+.num{font-variant-numeric:tabular-nums}
+
+.tri{height:4px;background:linear-gradient(90deg,#ff9933 0 33.4%,#ececec 33.4% 66.7%,#138808 66.7% 100%)}
+
+/* header */
+header.nav{background:var(--navy);color:#fff}
+header.nav .wrap{display:flex;align-items:center;gap:26px;padding-top:14px;padding-bottom:14px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff}
+.brand .mk{width:34px;height:34px;background:#fff;color:var(--navy);display:grid;place-items:center;font-weight:800;font-size:17px}
+.brand b{font-size:17px;letter-spacing:.2px}
+nav.links{margin-left:auto;display:flex;align-items:center;gap:22px}
+nav.links a{color:#fff;font-size:14.5px;font-weight:600;text-decoration:none;border-bottom:2px solid transparent;padding-bottom:2px}
+nav.links a:hover{border-bottom-color:var(--saffron)}
+nav.links a.cta{background:#fff;color:var(--navy);padding:9px 16px;font-weight:700;border-bottom:0}
+nav.links a.cta:hover{background:#e8ecf3}
+
+/* buttons — keycap style */
+.btn{display:inline-block;background:var(--navy);color:#fff;border:0;padding:14px 24px;font-size:16px;font-weight:700;cursor:pointer;text-decoration:none;text-align:center;box-shadow:0 3px 0 var(--navy-d)}
+.btn:hover{background:#163d76;color:#fff}
+.btn:active{transform:translateY(2px);box-shadow:0 1px 0 var(--navy-d)}
+.btn.sm{padding:10px 16px;font-size:14px}
+.btn.line{background:#fff;color:var(--navy);border:2px solid var(--navy);box-shadow:0 3px 0 var(--navy)}
+.btn.line:hover{background:#eef2f8}
+:focus-visible{outline:3px solid #ffdd00;outline-offset:2px}
+
+/* hero */
+.hero{border-bottom:1px solid var(--line)}
+.hero .wrap{display:grid;grid-template-columns:1.15fr 1fr;gap:56px;padding-top:64px;padding-bottom:72px;align-items:center}
+.eyebrow{font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--saffron);margin:0 0 14px}
+.hero h1{font-size:44px;font-weight:800;letter-spacing:-.5px;margin-bottom:18px}
+.lede{font-size:17.5px;color:var(--mut);max-width:52ch;margin:0 0 28px}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:30px}
+.checks{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.checks li{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+.checks svg{flex:0 0 auto;margin-top:2px}
+
+/* specimen panel */
+.specimen{border:1px solid var(--ink)}
+.specimen .shead{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:1px solid var(--ink);background:var(--bg)}
+.specimen .shead b{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink)}
+.specimen .shead span{font-size:10.5px;letter-spacing:1px;text-transform:uppercase;color:var(--mut);border:1px solid var(--line);padding:2px 7px;background:#fff}
+.srow{padding:13px 14px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:30px 1fr auto;gap:4px 12px}
+.srow:last-of-type{border-bottom:0}
+.srow .rk{font-size:15px;font-weight:800;color:var(--navy)}
+.srow .nm{font-size:14.5px;font-weight:700;color:var(--ink);line-height:1.3}
+.srow .bn{grid-column:2/3;font-size:12.5px;color:var(--mut)}
+.st{grid-row:1;grid-column:3;align-self:start;font-size:10px;font-weight:800;letter-spacing:1px;padding:3px 8px;border:1.5px solid}
+.st.g{color:var(--green);border-color:var(--green);background:var(--green-bg)}
+.st.a{color:var(--amber);border-color:var(--amber);background:var(--amber-bg)}
+.meter{grid-column:1/4;height:6px;background:#e6e9ee;position:relative}
+.meter i{position:absolute;inset:0 auto 0 0;background:var(--navy)}
+.sfoot{padding:9px 14px;font-size:11.5px;color:var(--mut);border-top:1px solid var(--ink);background:var(--bg)}
+
+/* stats */
+.stats{border-bottom:1px solid var(--line)}
+.stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);padding-top:0;padding-bottom:0}
+.stat{padding:26px 18px;border-left:1px solid var(--line)}
+.stat:first-child{border-left:0}
+.stat b{display:block;font-size:30px;font-weight:800;color:var(--navy);letter-spacing:-.5px}
+.stat span{font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--mut)}
+
+/* sections */
+.sect{padding:64px 0}
+.sect.grey{background:var(--bg);border-bottom:1px solid var(--line)}
+.kick{font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--saffron);margin:0 0 10px}
+.sect h2{font-size:30px;font-weight:800;letter-spacing:-.3px;margin-bottom:10px}
+.sub{font-size:16px;color:var(--mut);max-width:60ch;margin:0 0 40px}
+
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;counter-reset:s}
+.step{border-left:1px solid var(--line);padding:6px 26px 6px 22px}
+.step:first-child{border-left:0;padding-left:0}
+.step .n{font-size:44px;font-weight:800;color:var(--navy);line-height:1;display:block;margin-bottom:12px;font-variant-numeric:tabular-nums}
+.step h3{font-size:16.5px;margin-bottom:6px}
+.step p{font-size:14.5px;color:var(--mut);margin:0}
+
+.safe{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line)}
+.safe .cell{padding:22px 20px;border-left:1px solid var(--line)}
+.safe .cell:first-child{border-left:0}
+.safe h3{font-size:15px;margin:12px 0 6px}
+.safe p{font-size:13.5px;color:var(--mut);margin:0}
+.safe svg{color:var(--navy)}
+
+.schemes{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line)}
+.sc{display:flex;justify-content:space-between;gap:14px;align-items:center;padding:13px 18px;border-bottom:1px solid var(--line);font-size:14.5px}
+.sc:nth-child(odd){border-right:1px solid var(--line)}
+.sc:nth-last-child(-n+2){border-bottom:0}
+.sc b{color:var(--ink);font-weight:600}
+.sc span{font-size:10.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--mut);white-space:nowrap;border:1px solid var(--line);padding:2px 7px}
+
+/* CTA band */
+.band{background:var(--navy);color:#fff}
+.band .wrap{padding-top:54px;padding-bottom:54px;display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap}
+.band h2{color:#fff;font-size:28px;margin-bottom:8px}
+.band p{margin:0;color:#c6d2e4;font-size:15.5px}
+.band .btn{background:#fff;color:var(--navy);box-shadow:0 3px 0 #b9c4d6}
+.band .btn:hover{background:#e8ecf3}
+
+footer{padding:26px 0 34px;font-size:13px;color:var(--mut)}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+footer p{margin:0;max-width:70ch}
+
+@media(max-width:960px){
+  .hero .wrap{grid-template-columns:1fr;gap:40px;padding-top:44px;padding-bottom:52px}
+  .hero h1{font-size:34px}
+  .stats .wrap{grid-template-columns:repeat(2,1fr)}
+  .stat:nth-child(3){border-left:0}
+  .stat{border-top:1px solid var(--line)}
+  .stat:nth-child(-n+2){border-top:0}
+  .steps{grid-template-columns:1fr;gap:26px}
+  .step{border-left:0;padding:0}
+  .safe{grid-template-columns:1fr 1fr}
+  .safe .cell:nth-child(3){border-left:0}
+  .safe .cell:nth-child(n+3){border-top:1px solid var(--line)}
+  nav.links a:not(.cta){display:none}
+}
+@media(max-width:600px){
+  .hero h1{font-size:29px}
+  .schemes{grid-template-columns:1fr}
+  .sc:nth-child(odd){border-right:0}
+  .sc:nth-last-child(-n+2){border-bottom:1px solid var(--line)}
+  .sc:last-child{border-bottom:0}
+  .safe{grid-template-columns:1fr}
+  .safe .cell{border-left:0;border-top:1px solid var(--line)}
+  .safe .cell:first-child{border-top:0}
+  .stat b{font-size:24px}
+}
+</style>
+</head>
+<body>
+
+<div class="tri"></div>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="/"><span class="mk">S</span><b>SchemeSetu</b></a>
+    <nav class="links">
+      <a href="#how">How it works</a>
+      <a href="#schemes">Schemes covered</a>
+      <a href="/login">Log in</a>
+      <a class="cta" id="navCta" href="/login">Start now</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">A free public utility</p>
+      <h1>Find every government scheme you actually qualify for.</h1>
+      <p class="lede">Answer 8 plain-language questions. SchemeSetu checks your answers against <span id="heroCount">dozens of</span> central and state schemes, ranks what you qualify for, and links only to official sources. No Aadhaar, PAN or bank details — ever.</p>
+      <div class="cta-row">
+        <a class="btn" id="heroCta" href="/login">Check your eligibility →</a>
+        <a class="btn line" href="#how">How it works</a>
+      </div>
+      <ul class="checks">
+        <li><svg width="16" height="16" viewBox="0 0 16 16"><rect width="16" height="16" fill="#1a7f37"/><path d="M4 8.2 7 11l5-6" stroke="#fff" stroke-width="2" fill="none"/></svg>Ranked results with a plain reason for every decision</li>
+        <li><svg width="16" height="16" viewBox="0 0 16 16"><rect width="16" height="16" fill="#1a7f37"/><path d="M4 8.2 7 11l5-6" stroke="#fff" stroke-width="2" fill="none"/></svg>Every scheme links to its official government source</li>
+        <li><svg width="16" height="16" viewBox="0 0 16 16"><rect width="16" height="16" fill="#1a7f37"/><path d="M4 8.2 7 11l5-6" stroke="#fff" stroke-width="2" fill="none"/></svg>Free to use — final eligibility is decided by the scheme authority</li>
+      </ul>
+    </div>
+    <div class="specimen" aria-hidden="true">
+      <div class="shead"><b>Specimen result</b><span>Sample</span></div>
+      <div class="srow">
+        <span class="rk num">01</span><span class="nm">NSP Post-Matric Scholarship</span><span class="st g">Eligible</span>
+        <span class="bn">₹10,000 – ₹20,000 per academic year</span>
+        <span class="meter"><i style="width:78%"></i></span>
+      </div>
+      <div class="srow">
+        <span class="rk num">02</span><span class="nm">MUDRA Kishor</span><span class="st g">Eligible</span>
+        <span class="bn">Business loan ₹50,001 – ₹5,00,000</span>
+        <span class="meter"><i style="width:71%"></i></span>
+      </div>
+      <div class="srow">
+        <span class="rk num">03</span><span class="nm">PM Vishwakarma</span><span class="st a">Almost</span>
+        <span class="bn">Toolkit loan + training support</span>
+        <span class="meter"><i style="width:52%"></i></span>
+      </div>
+      <div class="sfoot">Illustration only — your results are computed live from your answers.</div>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="wrap">
+    <div class="stat"><b class="num">13</b><span>Schemes checked</span></div>
+    <div class="stat"><b class="num">8</b><span>Plain questions</span></div>
+    <div class="stat"><b class="num">&lt; 2 min</b><span>To finish</span></div>
+    <div class="stat"><b class="num">₹0</b><span>Cost, forever</span></div>
+  </div>
+</section>
+
+<section class="sect grey" id="how">
+  <div class="wrap">
+    <p class="kick">How it works</p>
+    <h2>Three steps. No paperwork.</h2>
+    <p class="sub">Nothing is uploaded, nothing is stored beyond your answers, and nothing is shared with any authority.</p>
+    <div class="steps">
+      <div class="step">
+        <span class="n">1</span>
+        <h3>Answer 8 plain questions</h3>
+        <p>Age, state, work stage, income band — type in your own words or pick a suggestion. Anything you'd rather not share, type <b>skip</b>.</p>
+      </div>
+      <div class="step">
+        <span class="n">2</span>
+        <h3>See your ranked schemes</h3>
+        <p>Eligible schemes first, each with a written reason and a match score. Near-misses show exactly what gap stands between you and the scheme.</p>
+      </div>
+      <div class="step">
+        <span class="n">3</span>
+        <h3>Apply via official links</h3>
+        <p>We link only to government websites and list the documents to carry. You apply yourself — we never stand between you and the authority.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sect">
+  <div class="wrap">
+    <p class="kick">Built to be safe</p>
+    <h2>Guardrails, stated plainly.</h2>
+    <p class="sub">A matching tool must earn trust before it earns clicks. These are our rules.</p>
+    <div class="safe">
+      <div class="cell">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l7 3v6c0 4.4-3 7.4-7 9-4-1.6-7-4.6-7-9V6l7-3z"/></svg>
+        <h3>Official sources only</h3>
+        <p>Each scheme entry carries its government URL and the date we last verified it.</p>
+      </div>
+      <div class="cell">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="10" width="16" height="10"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+        <h3>No sensitive documents</h3>
+        <p>No Aadhaar, PAN or bank details are asked for, at any point, for any reason.</p>
+      </div>
+      <div class="cell">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20V10M6 20v-6M18 20V4"/></svg>
+        <h3>Transparent ranking</h3>
+        <p>Every result states why it ranked where it did — in one sentence you can check.</p>
+      </div>
+      <div class="cell">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        <h3>Guidance, not a verdict</h3>
+        <p>We indicate eligibility; the scheme authority decides. Stale entries are flagged.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sect grey" id="schemes">
+  <div class="wrap">
+    <p class="kick">Coverage</p>
+    <h2>The schemes we check today.</h2>
+    <p class="sub" id="schemeSub">A curated, verified dataset — central schemes plus state schemes. More are added with source links before they enter the list.</p>
+    <div class="schemes" id="schemeGrid">
+      <div class="sc"><b>Loading the live list…</b><span></span></div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div>
+      <h2>Two minutes to your ranked list.</h2>
+      <p>Free account, eight questions, official links at the end.</p>
+    </div>
+    <a class="btn" id="bandCta" href="/login">Start your check →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>SchemeSetu is an independent guidance tool. It is not a government website and does not process applications. Eligibility shown here is indicative — the scheme authority's decision is final.</p>
+    <p><a href="/login">Log in</a> · <a href="/chat">Assistant</a></p>
+  </div>
+</footer>
+
+<script>
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+async function loadSchemes(){
+  try{
+    const r=await fetch('/schemes');if(!r.ok)return;
+    const j=await r.json();if(!j.length)return;
+    const states=new Set(j.map(s=>s.tag).filter(t=>t!=='CENTRAL'));
+    document.getElementById('heroCount').textContent=`${j.length}`;
+    document.getElementById('schemeSub').textContent=
+      `A curated, verified dataset — ${j.length} central and state schemes across ${states.size} states. More are added with source links before they enter the list.`;
+    document.getElementById('schemeGrid').innerHTML=j.map(s=>
+      `<div class="sc"><b>${esc(s.name)}</b><span>${esc(s.tag.charAt(0)+s.tag.slice(1).toLowerCase())}</span></div>`).join('');
+  }catch(e){/* static fallback text stays */}
+}
+loadSchemes();
+if(localStorage.getItem('ss_token')){
+  document.getElementById('navCta').textContent='Open assistant';
+  document.getElementById('navCta').href='/chat';
+  document.getElementById('heroCta').textContent='Open assistant →';
+  document.getElementById('heroCta').href='/chat';
+  document.getElementById('bandCta').textContent='Open assistant →';
+  document.getElementById('bandCta').href='/chat';
+}
+</script>
+</body>
+</html>

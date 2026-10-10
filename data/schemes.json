@@ -1,0 +1,844 @@
+[
+  {
+    "id": "pmegp",
+    "name": "Prime Minister's Employment Generation Programme (PMEGP)",
+    "body": "Khadi and Village Industries Commission (KVIC)",
+    "benefit_summary": "Subsidy 15–35% on project cost up to ₹50L (manufacturing) / ₹20L (service).",
+    "benefit_amount": 5000000,
+    "ease_score": 3,
+    "category_boost": [
+      "sc",
+      "st",
+      "obc",
+      "female",
+      "women"
+    ],
+    "funding_range": [
+      "50k to 5 lakh",
+      "50 lakh to 1 crore"
+    ],
+    "criteria": [
+      {
+        "field": "age",
+        "operator": "between",
+        "value": [
+          18,
+          70
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Age 18+"
+      },
+      {
+        "field": "occupation_stage",
+        "operator": "in",
+        "value": [
+          "aspiring entrepreneur",
+          "existing business",
+          "artisan",
+          "farmer",
+          "other",
+          "street vendor"
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Setting up a new unit"
+      },
+      {
+        "field": "sector",
+        "operator": "in",
+        "value": [
+          "manufacturing",
+          "services",
+          "trading",
+          "agriculture",
+          "handicraft",
+          "tech",
+          "other"
+        ],
+        "required": false,
+        "actionable": false,
+        "label": "Sector covered"
+      },
+      {
+        "field": "funding_need",
+        "operator": "in",
+        "value": [
+          "under 50k",
+          "50k to 5 lakh",
+          "5 to 10 lakh",
+          "10 to 50 lakh",
+          "50 lakh to 1 crore"
+        ],
+        "required": true,
+        "actionable": true,
+        "fix_hint": "Reduce the project cost to within ₹50L (manufacturing) or ₹20L (service) to fit PMEGP.",
+        "label": "Project cost within ceiling"
+      }
+    ],
+    "documents": [
+      "Aadhaar",
+      "PAN",
+      "Project report",
+      "Education certificate (Class VIII pass for projects >₹10L mfg / >₹5L service)",
+      "Caste certificate if claiming special category",
+      "Rural/urban proof"
+    ],
+    "channel": "Apply via kviconline.gov.in (KVIC) or district DIC; loan disbursed through banks.",
+    "url": "https://www.kviconline.gov.in/pmegpeportal/pmegphome/index.jsp",
+    "last_verified": "2026-09-15",
+    "source": "KVIC PMEGP portal + MyScheme.gov.in"
+  },
+  {
+    "id": "mudra-shishu",
+    "name": "MUDRA Shishu (loans up to ₹50,000)",
+    "body": "MUDRA / member banks, NBFCs & MFIs",
+    "benefit_summary": "Collateral-free loan up to ₹50,000 for starting a micro business.",
+    "benefit_amount": 50000,
+    "ease_score": 5,
+    "category_boost": [],
+    "funding_range": [
+      "under 50k"
+    ],
+    "criteria": [
+      {
+        "field": "age",
+        "operator": "between",
+        "value": [
+          18,
+          70
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Age 18+"
+      },
+      {
+        "field": "occupation_stage",
+        "operator": "in",
+        "value": [
+          "aspiring entrepreneur",
+          "existing business",
+          "artisan",
+          "farmer",
+          "other",
+          "student",
+          "street vendor"
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Micro-business purpose"
+      },
+      {
+        "field": "funding_need",
+        "operator": "in",
+        "value": [
+          "under 50k"
+        ],
+        "required": true,
+        "actionable": true,
+        "fix_hint": "Shishu covers needs under ₹50k. For larger needs see Kishor/Tarun.",
+        "label": "Need under ₹50k"
+      }
+    ],
+    "documents": [
+      "Aadhaar + KYC",
+      "Business plan / quotation",
+      "Bank statements if existing unit"
+    ],
+    "channel": "Apply at any bank / MUDRA mitra portal (mudramitra.in).",
+    "url": "https://www.mudra.org.in/",
+    "last_verified": "2026-09-15",
+    "source": "MUDRA.org.in + MyScheme.gov.in"
+  },
+  {
+    "id": "mudra-kishor",
+    "name": "MUDRA Kishor (₹50,001 – ₹5,00,000)",
+    "body": "MUDRA / member banks, NBFCs & MFIs",
+    "benefit_summary": "Collateral-free loan ₹50k–₹5L for micro/small units.",
+    "benefit_amount": 500000,
+    "ease_score": 5,
+    "category_boost": [],
+    "funding_range": [
+      "50k to 5 lakh"
+    ],
+    "criteria": [
+      {
+        "field": "age",
+        "operator": "between",
+        "value": [
+          18,
+          70
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Age 18+"
+      },
+      {
+        "field": "occupation_stage",
+        "operator": "in",
+        "value": [
+          "aspiring entrepreneur",
+          "existing business",
+          "artisan",
+          "farmer",
+          "other",
+          "student",
+          "street vendor"
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Micro-business purpose"
+      },
+      {
+        "field": "funding_need",
+        "operator": "in",
+        "value": [
+          "50k to 5 lakh"
+        ],
+        "required": true,
+        "actionable": true,
+        "fix_hint": "Kishor covers ₹50k–₹5L. Split or resize the requirement, or see Tarun for ₹5–10L.",
+        "label": "Need in ₹50k–₹5L band"
+      }
+    ],
+    "documents": [
+      "Aadhaar + KYC",
+      "Business plan / quotation",
+      "Udyam registration helps but not mandatory"
+    ],
+    "channel": "Apply at any bank / MUDRA mitra portal (mudramitra.in).",
+    "url": "https://www.mudra.org.in/",
+    "last_verified": "2026-09-15",
+    "source": "MUDRA.org.in + MyScheme.gov.in"
+  },
+  {
+    "id": "mudra-tarun",
+    "name": "MUDRA Tarun / Tarun Plus (₹5L – ₹20L)",
+    "body": "MUDRA / member banks",
+    "benefit_summary": "Loan ₹5L–₹10L (Tarun), up to ₹20L under Tarun Plus for established units.",
+    "benefit_amount": 2000000,
+    "ease_score": 4,
+    "category_boost": [],
+    "funding_range": [
+      "5 to 10 lakh",
+      "10 to 50 lakh"
+    ],
+    "criteria": [
+      {
+        "field": "age",
+        "operator": "between",
+        "value": [
+          18,
+          70
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Age 18+"
+      },
+      {
+        "field": "occupation_stage",
+        "operator": "in",
+        "value": [
+          "aspiring entrepreneur",
+          "existing business",
+          "artisan",
+          "other",
+          "street vendor"
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Business purpose"
+      },
+      {
+        "field": "funding_need",
+        "operator": "in",
+        "value": [
+          "5 to 10 lakh",
+          "10 to 50 lakh"
+        ],
+        "required": true,
+        "actionable": true,
+        "fix_hint": "Tarun covers ₹5–10L (Plus to ₹20L). For smaller needs see Shishu/Kishor; above ₹20L see Stand-Up India / banks.",
+        "label": "Need in ₹5–20L band"
+      }
+    ],
+    "documents": [
+      "Aadhaar + KYC",
+      "Udyam registration",
+      "ITR / bank statements for Plus category"
+    ],
+    "channel": "Apply at banks via mudramitra.in / JanSamarth portal.",
+    "url": "https://www.mudra.org.in/",
+    "last_verified": "2026-09-15",
+    "source": "MUDRA.org.in + MyScheme.gov.in"
+  },
+  {
+    "id": "standup-india",
+    "name": "Stand-Up India",
+    "body": "Department of Financial Services",
+    "benefit_summary": "Bank loan ₹10L–₹1Cr for greenfield enterprise by SC/ST and/or woman entrepreneur.",
+    "benefit_amount": 10000000,
+    "ease_score": 3,
+    "category_boost": [
+      "sc",
+      "st",
+      "female",
+      "women"
+    ],
+    "funding_range": [
+      "10 to 50 lakh",
+      "50 lakh to 1 crore"
+    ],
+    "criteria": [
+      {
+        "field": "age",
+        "operator": "between",
+        "value": [
+          18,
+          70
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Age 18+"
+      },
+      {
+        "field": "social_category",
+        "operator": "in",
+        "value": [
+          "SC",
+          "ST"
+        ],
+        "required": false,
+        "actionable": false,
+        "label": "SC/ST category (one path)"
+      },
+      {
+        "field": "gender",
+        "operator": "in",
+        "value": [
+          "Female"
+        ],
+        "required": false,
+        "actionable": false,
+        "label": "Woman entrepreneur (alternate path)"
+      },
+      {
+        "field": "funding_need",
+        "operator": "in",
+        "value": [
+          "10 to 50 lakh",
+          "50 lakh to 1 crore"
+        ],
+        "required": true,
+        "actionable": true,
+        "fix_hint": "Stand-Up India needs a ₹10L–₹1Cr greenfield project. Resize the project or use MUDRA/PMEGP for smaller needs.",
+        "label": "Loan in ₹10L–₹1Cr band"
+      },
+      {
+        "field": "business_registered",
+        "operator": "equals",
+        "value": false,
+        "required": false,
+        "actionable": true,
+        "fix_hint": "Scheme is for greenfield (new) enterprises. A new unit/company can be set up to qualify.",
+        "label": "Greenfield (new) enterprise"
+      }
+    ],
+    "documents": [
+      "Aadhaar, PAN",
+      "Caste certificate (for SC/ST) ",
+      "Project report",
+      "Udyam / company registration for the new unit"
+    ],
+    "channel": "Apply via standupmitra.in or any scheduled commercial bank branch.",
+    "url": "https://www.standupmitra.in/",
+    "last_verified": "2026-09-15",
+    "source": "standupmitra.in + MyScheme.gov.in"
+  },
+  {
+    "id": "startup-seed-fund",
+    "name": "Startup India Seed Fund Scheme (SISFS)",
+    "body": "DPIIT / Startup India",
+    "benefit_summary": "Seed support up to ₹20L grant / ₹50L investment via incubators for DPIIT-recognised startups.",
+    "benefit_amount": 5000000,
+    "ease_score": 2,
+    "category_boost": [],
+    "funding_range": [
+      "5 to 10 lakh",
+      "10 to 50 lakh",
+      "50 lakh to 1 crore"
+    ],
+    "criteria": [
+      {
+        "field": "age",
+        "operator": "between",
+        "value": [
+          18,
+          70
+        ],
+        "required": false,
+        "actionable": false,
+        "label": "Founder age flexible"
+      },
+      {
+        "field": "occupation_stage",
+        "operator": "in",
+        "value": [
+          "aspiring entrepreneur",
+          "existing business",
+          "student",
+          "other",
+          "street vendor"
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Startup intent"
+      },
+      {
+        "field": "sector",
+        "operator": "in",
+        "value": [
+          "tech",
+          "manufacturing",
+          "services",
+          "agriculture",
+          "handicraft",
+          "other"
+        ],
+        "required": false,
+        "actionable": false,
+        "label": "Innovative sector"
+      },
+      {
+        "field": "business_registered",
+        "operator": "equals",
+        "value": true,
+        "required": true,
+        "actionable": true,
+        "fix_hint": "Register the startup (DPIIT recognition + incubation) — this is the main actionable step.",
+        "label": "DPIIT-recognised / incubated"
+      },
+      {
+        "field": "funding_need",
+        "operator": "in",
+        "value": [
+          "5 to 10 lakh",
+          "10 to 50 lakh",
+          "50 lakh to 1 crore"
+        ],
+        "required": true,
+        "actionable": true,
+        "fix_hint": "Seed fund suits prototype-to-scale needs around ₹5L–₹1Cr.",
+        "label": "Seed-scale need"
+      }
+    ],
+    "documents": [
+      "DPIIT recognition certificate",
+      "Incubator selection",
+      "Pitch deck + milestones"
+    ],
+    "channel": "Apply via startupindia.gov.in through eligible incubators.",
+    "url": "https://www.startupindia.gov.in/",
+    "last_verified": "2026-09-15",
+    "source": "startupindia.gov.in + MyScheme.gov.in"
+  },
+  {
+    "id": "pm-vishwakarma",
+    "name": "PM Vishwakarma",
+    "body": "Ministry of Micro, Small & Medium Enterprises",
+    "benefit_summary": "Up to ₹3L collateral-free loan in tranches + toolkit incentive + skilling for 18 traditional trades.",
+    "benefit_amount": 300000,
+    "ease_score": 4,
+    "category_boost": [],
+    "funding_range": [
+      "under 50k",
+      "50k to 5 lakh"
+    ],
+    "criteria": [
+      {
+        "field": "age",
+        "operator": "between",
+        "value": [
+          18,
+          70
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Age 18+"
+      },
+      {
+        "field": "occupation_stage",
+        "operator": "in",
+        "value": [
+          "artisan",
+          "existing business",
+          "aspiring entrepreneur",
+          "other",
+          "street vendor"
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Traditional trade / artisan"
+      },
+      {
+        "field": "sector",
+        "operator": "in",
+        "value": [
+          "handicraft",
+          "manufacturing",
+          "services",
+          "other"
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Covered trade sector"
+      },
+      {
+        "field": "funding_need",
+        "operator": "in",
+        "value": [
+          "under 50k",
+          "50k to 5 lakh"
+        ],
+        "required": true,
+        "actionable": true,
+        "fix_hint": "Vishwakarma tranches total ~₹3L. Larger needs fit MUDRA/PMEGP better.",
+        "label": "Need within ~₹3L"
+      }
+    ],
+    "documents": [
+      "Aadhaar",
+      "Trade proof / Gram Panchayat verification",
+      "Bank account"
+    ],
+    "channel": "Enrol at CSC / pmvishwakarma.gov.in with verification.",
+    "url": "https://pmvishwakarma.gov.in/",
+    "last_verified": "2026-09-15",
+    "source": "pmvishwakarma.gov.in + MyScheme.gov.in"
+  },
+  {
+    "id": "ka-udyogini",
+    "name": "Karnataka Udyogini (women, Karnataka)",
+    "body": "Karnataka State Women Development Corporation",
+    "benefit_summary": "Loan up to ₹3L with up to 30% subsidy for women entrepreneurs domiciled in Karnataka (income-capped).",
+    "benefit_amount": 300000,
+    "ease_score": 4,
+    "category_boost": [
+      "female",
+      "women"
+    ],
+    "funding_range": [
+      "under 50k",
+      "50k to 5 lakh"
+    ],
+    "criteria": [
+      {
+        "field": "state",
+        "operator": "equals",
+        "value": "Karnataka",
+        "required": true,
+        "actionable": false,
+        "fix_hint": "Karnataka domicile is mandatory — not fixable in the short term.",
+        "label": "Karnataka resident"
+      },
+      {
+        "field": "gender",
+        "operator": "equals",
+        "value": "Female",
+        "required": true,
+        "actionable": false,
+        "label": "Woman applicant"
+      },
+      {
+        "field": "age",
+        "operator": "between",
+        "value": [
+          18,
+          55
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Age 18–55"
+      },
+      {
+        "field": "income_band",
+        "operator": "in",
+        "value": [
+          "under 1 lakh",
+          "1 to 2.5 lakh"
+        ],
+        "required": true,
+        "actionable": false,
+        "fix_hint": "Family income cap applies — not actionable; consider PMEGP/MUDRA instead.",
+        "label": "Family income within cap"
+      },
+      {
+        "field": "funding_need",
+        "operator": "in",
+        "value": [
+          "under 50k",
+          "50k to 5 lakh"
+        ],
+        "required": true,
+        "actionable": true,
+        "fix_hint": "Udyogini covers needs up to ~₹3L.",
+        "label": "Need up to ~₹3L"
+      }
+    ],
+    "documents": [
+      "Karnataka domicile",
+      "Income certificate",
+      "Aadhaar",
+      "Project report"
+    ],
+    "channel": "Apply via KSWDC / district women development office or bank.",
+    "url": "https://myscheme.gov.in/schemes/udyogini",
+    "last_verified": "2026-09-15",
+    "source": "MyScheme.gov.in (Udyogini page)"
+  },
+  {
+    "id": "nsp-scholarship",
+    "name": "NSP Post-Matric Scholarship",
+    "body": "National Scholarship Portal (Central + State schemes)",
+    "benefit_summary": "Fee reimbursement + maintenance allowance for post-matric studies (amounts vary by scheme).",
+    "benefit_amount": 12000,
+    "ease_score": 3,
+    "category_boost": [
+      "sc",
+      "st",
+      "obc",
+      "female",
+      "women"
+    ],
+    "criteria": [
+      {
+        "field": "occupation_stage",
+        "operator": "equals",
+        "value": "student",
+        "required": true,
+        "actionable": false,
+        "label": "Active student"
+      },
+      {
+        "field": "education_level",
+        "operator": "in",
+        "value": [
+          "school",
+          "undergraduate",
+          "postgraduate",
+          "diploma"
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Post-matric level course"
+      },
+      {
+        "field": "age",
+        "operator": "between",
+        "value": [
+          10,
+          35
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Age 10–35"
+      },
+      {
+        "field": "income_band",
+        "operator": "in",
+        "value": [
+          "under 1 lakh",
+          "1 to 2.5 lakh"
+        ],
+        "required": true,
+        "actionable": false,
+        "fix_hint": "Most NSP schemes cap family income around ₹2–2.5L — not changeable; check the scheme-wise cap on the portal.",
+        "label": "Family income within cap"
+      }
+    ],
+    "documents": [
+      "Aadhaar",
+      "Previous marksheet",
+      "Income certificate",
+      "Caste certificate (for category schemes)",
+      "Bank account + IFSC"
+    ],
+    "channel": "Apply on scholarships.gov.in when applications open (usually Jul–Oct).",
+    "application_window": {
+      "opens": "07-01",
+      "closes": "10-31",
+      "note": "Typical annual window - confirm exact dates on the official portal."
+    },
+    "url": "https://scholarships.gov.in/",
+    "last_verified": "2026-09-15",
+    "source": "scholarships.gov.in + MyScheme.gov.in"
+  },
+  {
+    "id": "pm-kisan",
+    "name": "PM-KISAN Samman Nidhi",
+    "body": "Ministry of Agriculture & Farmers Welfare",
+    "benefit_summary": "₹6,000 per year in 3 instalments to land-holding farmer families.",
+    "benefit_amount": 6000,
+    "ease_score": 4,
+    "category_boost": [],
+    "criteria": [
+      {
+        "field": "occupation_stage",
+        "operator": "equals",
+        "value": "farmer",
+        "required": true,
+        "actionable": false,
+        "label": "Farmer with cultivable land"
+      },
+      {
+        "field": "age",
+        "operator": "between",
+        "value": [
+          18,
+          100
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Age 18+"
+      },
+      {
+        "field": "income_band",
+        "operator": "in",
+        "value": [
+          "under 1 lakh",
+          "1 to 2.5 lakh",
+          "2.5 to 6 lakh"
+        ],
+        "required": true,
+        "actionable": false,
+        "fix_hint": "Income-tax payers and institutional land holders are excluded — see official criteria.",
+        "label": "Not an income-tax payer (proxy)"
+      }
+    ],
+    "documents": [
+      "Aadhaar",
+      "Land records (Khata/Khatauni)",
+      "Bank account seeded with Aadhaar"
+    ],
+    "channel": "Register at pmkisan.gov.in (Farmer Corner) or via CSC with e-KYC.",
+    "url": "https://pmkisan.gov.in/",
+    "last_verified": "2026-09-15",
+    "source": "pmkisan.gov.in + MyScheme.gov.in"
+  },
+  {
+    "id": "ignoaps",
+    "name": "IGNOAPS Old-Age Pension (NSAP)",
+    "body": "Ministry of Rural Development (with State top-ups)",
+    "benefit_summary": "Monthly pension for seniors 60+ in low-income households (Centre ₹200–500 + state additions).",
+    "benefit_amount": 6000,
+    "ease_score": 3,
+    "category_boost": [],
+    "criteria": [
+      {
+        "field": "age",
+        "operator": "gte",
+        "value": 60,
+        "required": true,
+        "actionable": false,
+        "label": "Age 60+"
+      },
+      {
+        "field": "income_band",
+        "operator": "in",
+        "value": [
+          "under 1 lakh",
+          "1 to 2.5 lakh"
+        ],
+        "required": true,
+        "actionable": false,
+        "fix_hint": "Below-poverty-line / low-income criterion — check your state's BPL list.",
+        "label": "Low-income household"
+      }
+    ],
+    "documents": [
+      "Aadhaar",
+      "Age proof",
+      "BPL / income certificate",
+      "Bank account"
+    ],
+    "channel": "Apply at Gram Panchayat / municipal office or via nsap.nic.in.",
+    "url": "https://nsap.nic.in/",
+    "last_verified": "2026-09-15",
+    "source": "nsap.nic.in + MyScheme.gov.in"
+  },
+  {
+    "id": "atal-pension",
+    "name": "Atal Pension Yojana (APY)",
+    "body": "PFRDA / banks & post offices",
+    "benefit_summary": "Guaranteed ₹1,000–5,000/month pension from age 60 for unorganised workers (join age 18–40).",
+    "benefit_amount": 60000,
+    "ease_score": 4,
+    "category_boost": [],
+    "criteria": [
+      {
+        "field": "age",
+        "operator": "between",
+        "value": [
+          18,
+          40
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Joining age 18–40"
+      },
+      {
+        "field": "income_band",
+        "operator": "in",
+        "value": [
+          "under 1 lakh",
+          "1 to 2.5 lakh",
+          "2.5 to 6 lakh",
+          "6 to 12 lakh"
+        ],
+        "required": true,
+        "actionable": false,
+        "fix_hint": "Income-tax payers enrolled after Oct 2022 are excluded — see official rules.",
+        "label": "Non-taxpayer income range"
+      }
+    ],
+    "documents": [
+      "Aadhaar",
+      "Bank account",
+      "Mobile number"
+    ],
+    "channel": "Enrol at any bank branch or post office; auto-debit contribution.",
+    "url": "https://jansuraksha.gov.in/",
+    "last_verified": "2026-09-15",
+    "source": "jansuraksha.gov.in + MyScheme.gov.in"
+  },
+  {
+    "id": "pmjjby",
+    "name": "PM Jeevan Jyoti Bima Yojana (PMJJBY)",
+    "body": "Department of Financial Services (via banks)",
+    "benefit_summary": "₹2 lakh life cover for ₹436/year, ages 18–50 with a bank account.",
+    "benefit_amount": 200000,
+    "ease_score": 5,
+    "category_boost": [],
+    "criteria": [
+      {
+        "field": "age",
+        "operator": "between",
+        "value": [
+          18,
+          50
+        ],
+        "required": true,
+        "actionable": false,
+        "label": "Age 18–50"
+      }
+    ],
+    "documents": [
+      "Bank account + consent form",
+      "Aadhaar (for KYC)"
+    ],
+    "channel": "One-page form at your bank branch or net-banking; auto-renewed yearly.",
+    "url": "https://jansuraksha.gov.in/",
+    "last_verified": "2026-09-15",
+    "source": "jansuraksha.gov.in + MyScheme.gov.in"
+  }
+]
