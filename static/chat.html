@@ -92,9 +92,14 @@ a{color:var(--navy);text-decoration:underline;text-underline-offset:2px}
 .printhdr{display:none}
 .prt{border:2px solid var(--navy);background:#fff;color:var(--navy);padding:5px 12px;font-size:12px;font-weight:700;cursor:pointer;display:none}
 .prt:hover{background:var(--navy);color:#fff}
+#histList{border-bottom:1px solid var(--line);background:var(--bg);padding:10px 16px;max-height:240px;overflow-y:auto}
+#histList .hnew{display:inline-block;margin-bottom:8px}
+.hitem{display:flex;justify-content:space-between;gap:10px;width:100%;text-align:left;padding:8px 6px;background:#fff;border:1px solid var(--line);border-left:3px solid var(--navy);margin-bottom:6px;cursor:pointer;font-size:13px;color:var(--body);font-family:inherit}
+.hitem:hover{background:#eef2f8}
+.hitem b{color:var(--ink)}
 @media print{
   body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  .top,.chatpane,.optzone,#row,.hint,.prt,#resCount{display:none !important}
+  .top,.chatpane,.optzone,#row,.hint,.prt,#resCount,#histList{display:none !important}
   body{background:#fff}
   .wrap{display:block;max-width:none;padding:0}
   .pane{border:0}
@@ -519,6 +524,50 @@ window.addEventListener('beforeprint',()=>{
   document.title='SchemeSetu — your results';
 });
 window.addEventListener('afterprint',()=>{document.title='Assistant — SchemeSetu';});
+
+/* ---------- history ---------- */
+let histOpen=false;
+async function toggleHist(){
+  histOpen=!histOpen;
+  const el=document.getElementById('histList');
+  el.style.display=histOpen?'block':'none';
+  if(histOpen)await loadHist();
+}
+async function loadHist(){
+  const el=document.getElementById('histList');
+  el.innerHTML='<div style="font-size:12.5px;color:var(--mut);padding:6px 2px">Loading…</div>';
+  try{
+    const r=await api('/history');const j=await r.json();
+    let h='<button class="prt hnew" style="display:inline-block" onclick="newCheck()">+ Start a new check</button>';
+    if(!j.items.length)h+='<div style="font-size:12.5px;color:var(--mut);padding:8px 2px">No saved results yet — finish a check and it will appear here.</div>';
+    j.items.forEach(it=>{
+      const d=new Date(it.created*1000).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});
+      h+=`<button class="hitem" onclick="openHist(${it.id})"><span><b>${esc(d)}</b></span><span><b style="color:var(--green)">${it.n_eligible}</b> eligible · ${it.n_near} almost</span></button>`;
+    });
+    el.innerHTML=h;
+  }catch(e){el.innerHTML='<div style="font-size:12.5px;color:var(--red);padding:6px 2px">Could not load history.</div>';}
+}
+async function openHist(id){
+  try{
+    const r=await api('/history/'+id);
+    if(!r.ok)return;
+    const results=await r.json();
+    render(results);
+    document.getElementById('histList').style.display='none';histOpen=false;
+  }catch(e){}
+}
+async function newCheck(){
+  try{
+    const r=await api('/sessions',{method:'POST'});const j=await r.json();
+    SID=j.session_id;chat.innerHTML='';
+    res.innerHTML='<div class="empty"><b>Results appear here</b><span>Answer the questions on the left — your ranked schemes build up live.</span></div>';
+    document.getElementById('prtBtn').style.display='none';
+    document.getElementById('resCount').style.display='none';
+    pbar.style.width='0%';ptext.textContent='Starting…';
+    document.getElementById('histList').style.display='none';histOpen=false;
+    add('bot',j.message);ask(j);
+  }catch(e){add('bot','Could not start a new session.');}
+}
 
 inp.addEventListener('keydown',e=>{if(e.key==='Enter')send();});
 init();
