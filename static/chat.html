@@ -225,12 +225,14 @@ table.cmp th{background:#f8fafc}table.cmp td.dim{background:#f8fafc;font-weight:
 <script>
 const TOKEN=localStorage.getItem('ss_token');
 if(!TOKEN) location.href='/login';
+// API host: same origin on localhost, Render backend everywhere else.
+const API_BASE=(location.hostname==='localhost'||location.hostname==='127.0.0.1')?'':'https://govt-9bjq.onrender.com';
 const NAME=localStorage.getItem('ss_name')||'there';
 document.getElementById('uname').textContent=NAME;
 document.getElementById('uav').textContent=(NAME.trim()[0]||'?').toUpperCase();
 
-function logout(){fetch('/auth/logout',{method:'POST',headers:{'Authorization':'Bearer '+TOKEN}}).finally(()=>{localStorage.removeItem('ss_token');localStorage.removeItem('ss_name');location.href='/';});}
-async function api(path,opts={}){opts.headers=Object.assign({'Authorization':'Bearer '+TOKEN},opts.headers||{});const r=await fetch(path,opts);if(r.status===401){logout();throw new Error('session expired');}return r;}
+function logout(){fetch(API_BASE+'/auth/logout',{method:'POST',headers:{'Authorization':'Bearer '+TOKEN}}).finally(()=>{localStorage.removeItem('ss_token');localStorage.removeItem('ss_name');location.href='/';});}
+async function api(path,opts={}){opts.headers=Object.assign({'Authorization':'Bearer '+TOKEN},opts.headers||{});const r=await fetch(API_BASE+path,opts);if(r.status===401){logout();throw new Error('session expired');}return r;}
 
 let SID=null,FIELD=null,busy=false;
 let LANG=localStorage.getItem('ss_lang')||'en';
