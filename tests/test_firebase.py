@@ -15,14 +15,33 @@ from app.main import app
 c = TestClient(app)
 
 
-def test_disabled_without_key():
-    assert not Path("firebase-key.json").exists()
-    assert not Path("/etc/secrets/firebase-key.json").exists()
+def test_disabled_without_key(monkeypatch):
+    # simulate "no key anywhere" regardless of this checkout's files
+    monkeypatch.setattr(fb, "_db", None)
+    monkeypatch.setattr(fb, "_auth", None)
+    monkeypatch.setattr(fb, "_find_key", lambda: None)
     assert fb.enabled() is False
     st = fb.status()
     assert st["firebase"] is False and st.get("reason")
     with pytest.raises(ValueError):
         fb.verify_token("anything")
+
+
+def test_real_key_initializes_when_present(monkeypatch):
+    # validates the operator-placed key file WITHOUT printing any secret:
+    # init with a certificate file needs no network.
+    if not Path("firebase-key.json").exists():
+        pytest.skip("no local key file")
+    import json
+    d = json.loads(Path("firebase-key.json").read_text(encoding="utf-8"))
+    assert d.get("project_id") == "govt-11bb5"
+    monkeypatch.setenv("AUTH_BACKEND", "firebase")
+    monkeypatch.setattr(fb, "_db", None)
+    monkeypatch.setattr(fb, "_auth", None)
+    assert fb.enabled() is True
+    assert fb.status()["firebase"] is True
+    with pytest.raises(ValueError):
+        fb.verify_token("definitely-not-a-token")
 
 
 def test_auth_config_public_and_reports_local():

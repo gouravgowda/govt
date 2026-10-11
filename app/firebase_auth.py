@@ -42,9 +42,16 @@ def _find_key() -> Optional[Path | str]:
     return inline or None
 
 
+def _backend_pref() -> str:
+    return os.getenv("AUTH_BACKEND", "auto").strip().lower()
+
+
 def init_firebase() -> bool:
     """Initialize once. Returns True when Firebase is usable."""
     global _db, _auth, _init_error
+    if _backend_pref() == "local":
+        _init_error = "AUTH_BACKEND=local (forced local accounts)"
+        return False
     if _db is not None:
         return True
     try:

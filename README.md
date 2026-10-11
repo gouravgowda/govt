@@ -127,6 +127,7 @@ Environment variables (all optional; see `.env.example`):
 | `STALENESS_DAYS` | `180` | Records older than this show a review warning |
 | `RANK_WEIGHTS_JSON` | (built-in weights) | e.g. `{"benefit": 0.4, "ease": 0.2}` to retune ranking |
 | `AUTH_DB_PATH` | `users.db` | SQLite account store location |
+| `AUTH_BACKEND` | `auto` | `firebase` (require key) · `local` (force SQLite) · `auto` (key present → Firebase) |
 | `AUTH_TOKEN_TTL` | 30 days (s) | Bearer token lifetime |
 
 ---
