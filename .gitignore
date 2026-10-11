@@ -17,3 +17,8 @@ venv/
 .idea/
 .DS_Store
 Thumbs.db
+
+# stray local runtimes / vendor drops — never commit
+Python/
+python*/
+

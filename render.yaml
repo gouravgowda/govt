@@ -1,3 +1,5 @@
+# Render Blueprint — auto-fills the Web Service settings on deploy.
+# Dashboard flow: New + → Web Service → pick the govt repo → Deploy.
 services:
   - type: web
     name: govt
@@ -5,6 +7,7 @@ services:
     plan: free
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
     envVars:
       - key: PYTHON_VERSION
         value: "3.10.13"
