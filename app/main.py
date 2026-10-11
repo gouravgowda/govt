@@ -20,6 +20,7 @@ from fastapi.staticfiles import StaticFiles
 load_dotenv()
 
 from . import auth as auth_store
+from . import firebase_auth as fb
 from . import history as history_store
 from .compare import build_comparison
 from .deadlines import deadline_status
@@ -93,10 +94,44 @@ def _bearer(authorization: str | None) -> str:
 
 
 def current_user(authorization: str | None = Header(default=None)) -> Dict[str, Any]:
-    user = auth_store.user_for_token(_bearer(authorization or ""))
+    token = _bearer(authorization or "")
+    if fb.enabled():
+        # production: Firebase ID tokens (email + Google); also upserts users/{uid}
+        try:
+            user = fb.verify_token(token)
+        except ValueError:
+            raise HTTPException(401, "Login required — sign up or log in first.")
+        try:
+            fb.ensure_user(user["id"], user.get("email", ""), user.get("name", ""))
+            if not user.get("name"):
+                user["name"] = (user.get("email", "").split("@")[0] or "there")
+        except Exception:
+            pass
+        return user
+    # local fallback: SQLite accounts (localhost, tests, offline demos)
+    user = auth_store.user_for_token(token)
     if not user:
         raise HTTPException(401, "Login required — sign up or log in first.")
     return user
+
+
+def _save_history(user: Dict[str, Any], profile: dict, results: dict) -> None:
+    try:
+        if fb.enabled():
+            fb.save_history(str(user["id"]), profile, results)
+        else:
+            history_store.save(user["id"], profile, results)
+    except Exception:
+        pass
+
+
+@app.get("/auth/config")
+def auth_config():
+    """Public: tells the login page whether Firebase is live + its web config."""
+    st = fb.status()
+    return {"firebase": st["firebase"],
+            "config": fb.FIREBASE_WEB_CONFIG if st["firebase"] else None,
+            **({} if st["firebase"] else {"reason": st.get("reason", "")})}
 
 
 def _get_session(sid: str, user: Dict[str, Any] | None = None) -> Dict[str, Any]:
@@ -376,10 +411,7 @@ def post_message(sid: str, req: MessageRequest, user: Dict[str, Any] = Depends(c
 
     def _finish(results: Dict[str, Any], ack: str = "") -> MessageResponse:
         session["done"] = True
-        try:
-            history_store.save(user["id"], results.get("profile", {}), results)
-        except Exception:
-            pass
+        _save_history(user, results.get("profile", {}), results)
         n_e = len(results["eligible"])
         L = _lang(session)
         if L == "en":
@@ -439,12 +471,24 @@ def post_message(sid: str, req: MessageRequest, user: Dict[str, Any] = Depends(c
 
 @app.get("/history")
 def history_list(user: Dict[str, Any] = Depends(current_user)):
-    return {"items": history_store.list_for(user["id"])}
+    try:
+        if fb.enabled():
+            return {"items": fb.list_history(str(user["id"])), "backend": "firestore"}
+    except Exception:
+        pass
+    return {"items": history_store.list_for(user["id"]), "backend": "sqlite"}
 
 
 @app.get("/history/{hid}")
-def history_get(hid: int, user: Dict[str, Any] = Depends(current_user)):
-    r = history_store.get(user["id"], hid)
+def history_get(hid: str, user: Dict[str, Any] = Depends(current_user)):
+    r = None
+    try:
+        if fb.enabled():
+            r = fb.get_history(str(user["id"]), hid)
+    except Exception:
+        r = None
+    if r is None:
+        r = history_store.get(user["id"], int(hid)) if hid.isdigit() else None
     if not r:
         raise HTTPException(404, "no such saved result")
     return r

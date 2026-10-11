@@ -62,7 +62,7 @@ On macOS/Linux use `python3` and `/` paths — everything else is identical. Cop
 
 ## How it works (user journey)
 
-1. **Sign up / log in** — name, email, password. Passwords are PBKDF2-hashed (200k rounds) in a local SQLite store; sessions use revocable bearer tokens.
+1. **Sign up / log in** — email + password or Google (via Firebase), falling back to the built-in local account system when Firebase isn't configured. Chat sessions use bearer tokens (Firebase ID tokens in production).
 2. **Pick a language** — EN | हिंदी | ಕನ್ನಡ toggle in the chat header. Questions, option chips, replies, badges and explanations all switch; option chips show translated labels but submit canonical values.
 3. **Answer 5–8 questions, one at a time** — the flow adapts to your life stage:
    - *Student* → education level + income (scholarships), never business-loan questions
@@ -146,7 +146,9 @@ app/deadlines.py   Recurring application-window → open/upcoming/closed badges
 app/recheck.py     Status diffs + one-tap fix actions for near-misses
 app/compare.py     Side-by-side table builder
 app/i18n.py        EN/HI/KN string tables (questions, options, replies, badges)
-app/auth.py        PBKDF2 password hashing + SQLite users + bearer tokens
+app/auth.py        PBKDF2 password hashing + SQLite users + bearer tokens (local fallback)
+app/firebase_auth.py Firebase ID-token verification + Firestore users/history (primary when a key is present)
+app/history.py     Saved result summaries (SQLite fallback; Firestore in production)
 app/history.py     Saved result summaries per account
 data/schemes.json            Base dataset (13 records)
 data/schemes_extended.json   44 more: credit/insurance/pension/scholarship + state schemes
@@ -229,7 +231,7 @@ Coverage: rules-engine operators · dataset schema validation · 11 persona fixt
 ## Privacy & security
 
 - No Aadhaar, PAN, bank, or document uploads — asked nowhere, stored nowhere.
-- Passwords PBKDF2-hashed (200k rounds, per-user salt); bearer tokens random 256-bit, revocable, 30-day TTL.
+- **Accounts:** Firebase Auth (email + Google) in production; PBKDF2-hashed (200k rounds, per-user salt) local SQLite accounts as offline fallback. Bearer tokens random 256-bit, revocable, 30-day TTL (local) or 1-hour Firebase ID tokens.
 - Sessions live in memory with TTL expiry and per-account ownership checks (403 on cross-account access).
 - Income is collected as bands, never exact figures; sensitive fields accept skips.
 - Secrets (`.env`, `users.db`, `firebase-key.json`) are git-ignored; the suite runs fully offline.
